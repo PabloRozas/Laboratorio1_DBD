@@ -12,7 +12,8 @@ class Metodo extends Model
     {
         return $this->belongsTo('App\Bank');
     }
-    public function tipos(){
-        return $this->belongsTo('App\Card_Type')
+    public function tipos()
+    {
+        return $this->belongsTo('App\Card_Type');
     }
 }

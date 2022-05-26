@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('autenticacions', function (Blueprint $table) {
             $table->id();
+            $table->string('contrasena');
+            $table->date('fecha_creacion');
+            // $table->integer('id_usuario');
+            // $table->foreign('id_usuario')->references('id')->on('users');
+            // Ver como va, no se como se hace respeecto a la autenticacion
             $table->timestamps();
         });
     }
