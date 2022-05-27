@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
-            $table->decimal('num_puntaje', $precision= 2, $scale = 1);
+            $table->decimal('num_puntaje', $precision = 2, $scale = 1);
             $table->timestamps();
         });
     }

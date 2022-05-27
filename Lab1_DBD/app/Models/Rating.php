@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Rating extends Model
 {
     use HasFactory;
+
+    public function puntuaje(){
+        return $this->belongsTo('App\Score');
+    }
 }
