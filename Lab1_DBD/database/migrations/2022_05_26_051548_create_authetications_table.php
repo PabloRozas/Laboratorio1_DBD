@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('autenticacions', function (Blueprint $table) {
+        Schema::create('authentications', function (Blueprint $table) {
             $table->id();
             $table->string('contrasena');
             $table->date('fecha_creacion');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('autenticacions');
+        Schema::dropIfExists('authentications');
     }
 };

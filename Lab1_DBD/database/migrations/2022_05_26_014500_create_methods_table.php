@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('metodos', function (Blueprint $table) {
+        Schema::create('methods', function (Blueprint $table) {
             $table->id();
             $table->integer('num_tarjeta');
             $table->integer('fecha_vencimiento');
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('metodos');
+        Schema::dropIfExists('methods');
     }
 };
