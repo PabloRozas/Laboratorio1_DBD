@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('genders', function (Blueprint $table) {
+        Schema::create('functionalities_roles', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_genero',20);
+            $table->integer('id_functionalities');
+            $table->integer('id_roles');
+            $table->foreign('id_functionalities')->references('id')->on('functionalities');
+            $table->foreign('id_roles')->references('id')->on('roles');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genders');
+        Schema::dropIfExists('functionalities_roles');
     }
 };

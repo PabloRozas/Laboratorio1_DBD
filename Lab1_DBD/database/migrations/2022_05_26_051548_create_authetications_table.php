@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('authentications', function (Blueprint $table) {
             $table->id();
-            $table->string("nombre_rol", 20);
+            $table->string('contrasena');
+            $table->date('fecha_creacion');
+            // $table->integer('id_usuario');
+            // $table->foreign('id_usuario')->references('id')->on('users');
+            // Ver como va, no se como se hace respeecto a la autenticacion
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('authentications');
     }
 };
