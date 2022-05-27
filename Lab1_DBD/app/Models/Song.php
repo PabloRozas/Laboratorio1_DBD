@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gender extends Model
+class Song extends Model
 {
-    public function song()
+    public function subject()
     {
-    return $this->hasMany(Song::class);
+        return $this->belongsTo(Gender::class);
     }
     use HasFactory;
 }
