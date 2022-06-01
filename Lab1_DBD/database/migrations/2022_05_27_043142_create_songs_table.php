@@ -21,9 +21,9 @@ return new class extends Migration
             $table->boolean('restriccion_edad');
             $table->integer('reproducciones');
             $table->date('fecha_creacion');
-            $table->integer('id_genero');
-            $table->integer('id_pais');
-            $table->integer('id_album');
+            $table->integer('id_genero')->nullable();
+            $table->integer('id_pais')->nullable();
+            $table->integer('id_album')->nullable();
             $table->foreign('id_genero')->references('id')->on('genres');
             $table->foreign('id_pais')->references('id')->on('locations');
             $table->foreign('id_album')->references('id')->on('albums');
