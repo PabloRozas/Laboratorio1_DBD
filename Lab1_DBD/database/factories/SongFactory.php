@@ -23,13 +23,13 @@ class SongFactory extends Factory
         return [
             'Titulo' => $this->faker->words(2, true),
             'fecha_subida' => $this->faker->date(),
-            'duracion' => $this->faker->numberBetween(0, 200),
+            'duracion' => $this->faker->dateTimeBetween($min = '00:00:05', $max = '00:06:00'),
             'restriccion_edad' => $this->faker->boolean(),
             'reproducciones' => $this->faker->randomNumber(1, 10000),
             'fecha_creacion' => $this->faker->date(),
-            // 'id_genero' => Genre::all()->random()->id,
-            // 'id_album' => Album::all()->random()->id,
-            // 'id_pais' => Location::all()->random()->id,
+            'id_genero' => Genre::all()->random()->id,
+            'id_album' => Album::all()->random()->id,
+            'id_pais' => Location::all()->random()->id,
         ];
     }
 }

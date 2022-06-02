@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('Titulo');
             $table->string('fecha_subida');
-            $table->string('duracion');
+            $table->time('duracion');
             $table->boolean('restriccion_edad');
             $table->integer('reproducciones');
             $table->date('fecha_creacion');

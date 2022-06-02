@@ -17,9 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('contrasena');
             $table->date('fecha_creacion');
-            // $table->integer('id_usuario');
-            // $table->foreign('id_usuario')->references('id')->on('users');
-            // Ver como va, no se como se hace respeecto a la autenticacion
+            $table->integer('id_usuario');
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->timestamps();
         });
     }

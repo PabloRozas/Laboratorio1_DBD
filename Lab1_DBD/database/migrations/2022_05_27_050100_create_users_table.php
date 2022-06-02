@@ -18,19 +18,17 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('id_auth');
-            $table->foreign('id_auth')->references('id')->on('authentications');
             $table->rememberToken();
             $table->integer('id_rol');
             $table->foreign('id_rol')->references('id')->on('roles');
             $table->integer('num_tarjeta');
             $table->foreign('num_tarjeta')->references('id')->on('methods');
-            $table->unsignedBigInteger('albums_id')->nullable();
-            $table->foreign('albums_id')->references('id')->on('albums');
-            $table->unsignedBigInteger('playlists_id')->nullable();
-            $table->foreign('playlists_id')->references('id')->on('playlists');
-            $table->unsignedBigInteger('songs_id')->nullable();
-            $table->foreign('songs_id')->references('id')->on('songs');
+            // $table->unsignedBigInteger('albums_id')->nullable();
+            // $table->foreign('albums_id')->references('id')->on('albums');
+            // $table->unsignedBigInteger('playlists_id')->nullable();
+            // $table->foreign('playlists_id')->references('id')->on('playlists');
+            // $table->unsignedBigInteger('songs_id')->nullable();
+            // $table->foreign('songs_id')->references('id')->on('songs');
             $table->timestamps();
         });
     }
