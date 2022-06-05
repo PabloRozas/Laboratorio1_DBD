@@ -19,13 +19,11 @@ class MethodFactory extends Factory
     public function definition()
     {
         return [
-            'num_tarjeta' => $this->faker->numberBetween(1000, 9999),
             'fecha_vencimiento' => $this->faker->date(),
             'CVC' => $this->faker->numberBetween(100, 999),
             'nombre_titular' => $this->faker->name(),
             'cod_banks' => Bank::all()->random()->id,
             'cod_tarjeta' => Card_Type::all()->random()->id,
-
         ];
     }
 }

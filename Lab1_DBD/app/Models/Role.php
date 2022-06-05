@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
-    public function funciones()
+    public function subject()
     {
         return $this->belongsToMany('App\Functionality');
     }

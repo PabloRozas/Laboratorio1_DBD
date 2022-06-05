@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('methods', function (Blueprint $table) {
             $table->id();
-            $table->integer('num_tarjeta');
             $table->date('fecha_vencimiento');
             $table->integer('CVC');
             $table->string('nombre_titular');

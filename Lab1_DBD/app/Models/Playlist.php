@@ -11,4 +11,7 @@ class Playlist extends Model
     public function canciones(){
         return $this->belongsToMany('App\Song');
     }
+    public function subjectUser(){
+        return $this->belongsTo('App\User');
+    }
 }

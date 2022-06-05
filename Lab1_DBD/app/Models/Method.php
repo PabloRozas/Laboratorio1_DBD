@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Method extends Model
 {
     use HasFactory;
-    public function bancos()
+    public function subjectBancos()
     {
         return $this->belongsTo('App\Bank');
     }
-    public function tipos()
+    public function subjectTipos()
     {
         return $this->belongsTo('App\Card_Type');
     }

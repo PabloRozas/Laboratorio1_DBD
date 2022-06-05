@@ -16,16 +16,34 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Authentication');
     }
-    public function roles()
+    public function subjectRoles()
     {
-        return $this->hasMany('App\Rol');
+        return $this->belongsTo('App\Rol');
     }
 
-    public function metodos()
+    public function courseMetodos()
     {
         return $this->hasMany('App\Method');
     }
+    public function courseRating()
+    {
+        return $this->hasMany('App\Course');
 
+    }
+    public function coursePlaylist()
+    {
+        return $this->hasMany('App\Playlist');
+
+    }
+    public function courseAlbum()
+    {
+        return $this->hasMany('App\Album');
+
+    }
+    public function subjectSong()
+    {
+        return $this->belongsTo('App\Song');
+    }
     /**
      * The attributes that are mass assignable.
      *

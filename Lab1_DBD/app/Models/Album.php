@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Album extends Model
 {
     use HasFactory;
+    public function subjectUser(){
+        return $this->belongsTo('App\User');
+    }
 }
