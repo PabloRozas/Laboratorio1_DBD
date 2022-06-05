@@ -21,9 +21,10 @@ class RatingFactory extends Factory
     {
         return [
             'Comentario' => $this->faker->text(),
-            'id_user' => User::all()->random()->id,
             'id_cancion' => Song::all()->random()->id,
             'id_score' => Score::all()->random()->id,
+            'id_user' => User::all()->random()->id,
+
         ];
     }
 }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('Nombre');
             $table->time('duracion');
+            $table->integer('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }
