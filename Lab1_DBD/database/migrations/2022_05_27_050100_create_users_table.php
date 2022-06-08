@@ -25,8 +25,6 @@ return new class extends Migration
             $table->foreign('num_tarjeta')->references('id')->on('methods');
             // $table->integer('id_playlists')->nullable();
             // $table->foreign('id_playlists')->references('id')->on('playlists');
-            $table->integer('id_song')->nullable();
-            $table->foreign('id_song')->references('id')->on('songs');
             $table->timestamps();
         });
     }

@@ -30,9 +30,5 @@ class Song extends Model
     {
         return $this->hasMany('App\Rating');
     }
-    public function courseUser()
-    {
-        return $this->hasMany('App\User');
 
-    }
 }

@@ -40,10 +40,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Album');
 
     }
-    public function subjectSong()
-    {
-        return $this->belongsTo('App\Song');
-    }
+
     /**
      * The attributes that are mass assignable.
      *

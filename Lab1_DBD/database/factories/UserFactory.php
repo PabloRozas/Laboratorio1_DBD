@@ -29,9 +29,8 @@ class UserFactory extends Factory
             'id_rol' => Role::all()->random()->id,
             'num_tarjeta' => Method::all()->random()->id,
             'remember_token' => Str::random(10),
-            'id_song' => Song::all()->random()->id,
             //'id_playlists' => Playlist::all()->random()->id,
-            'id_album' => Album::all()->random()->id,
+            //'id_album' => Album::all()->random()->id,
         ];
     }
 

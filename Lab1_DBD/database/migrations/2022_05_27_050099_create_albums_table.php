@@ -17,9 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('Nombre');
             $table->time('duracion');
-            $table->timestamps();
-            $table->integer('id_user')->nullable();
+            $table->unsignedBigInteger('id_user')->nullable();
             $table->foreign('id_user')->references('id')->on('users');
+
+            $table->timestamps();
+            
+
         });
     }
 

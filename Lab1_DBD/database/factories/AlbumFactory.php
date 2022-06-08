@@ -19,6 +19,7 @@ class AlbumFactory extends Factory
         return [
             'Nombre' => $this->faker->words(2, true),
             'duracion' => $this->faker->dateTimeBetween($min = '00:00:28', $max = '01:30:00'),
+            'id_user' => User::all()->random()->id,
         ];
     }
 }
