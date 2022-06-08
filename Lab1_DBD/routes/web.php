@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\BankController;
+use App\Models\Bank;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +21,4 @@ Route::get('/', function () {
 });
 
 Route::get('/genres', [GenreController::class, 'index']);
+Route::get('/banks', [BankController::class,'index']);
