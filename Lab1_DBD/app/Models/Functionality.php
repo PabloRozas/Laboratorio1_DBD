@@ -9,7 +9,7 @@ class Functionality extends Model
 {
     use HasFactory;
 
-    public function roles()
+    public function Role()
     {
         return $this->belongsToMany('App\Role');
     }

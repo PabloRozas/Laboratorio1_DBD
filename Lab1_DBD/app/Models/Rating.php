@@ -9,15 +9,15 @@ class Rating extends Model
 {
     use HasFactory;
 
-    public function subjectScore()
+    public function Score()
     {
         return $this->belongsTo('App\Score');
     }
-    public function subjectUser()
+    public function User()
     {
         return $this->belongsTo('App\User');
     }
-    public function subjectSong()
+    public function Song()
     {
         return $this->belongsTo('App\Song');
     }

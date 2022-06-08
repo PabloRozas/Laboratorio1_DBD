@@ -9,24 +9,24 @@ class Song extends Model
 {
     use HasFactory;
 
-    public function subjectGenero()
+    public function Genre()
     {
         return $this->belongsTo('App\Genre');
     }
-    public function subjectPais()
+    public function Location()
     {
         return $this->belongsTo('App\Location');
     }
 
-    public function subjectAlbum()
+    public function Album()
     {
         return $this->belongsTo('App\Album');
     }
 
-    public function subjectPlaylists(){
+    public function Playlists(){
         return $this->belongsToMany('App\Playlist');
     }
-    public function courseRating()
+    public function Rating()
     {
         return $this->hasMany('App\Rating');
     }

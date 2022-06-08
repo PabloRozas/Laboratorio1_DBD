@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Score extends Model
 {
     use HasFactory;
-    public function courseRating()
+    public function Rating()
     {
         return $this->hasMany('App\Rating');
     }

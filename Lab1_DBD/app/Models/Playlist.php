@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Playlist extends Model
 {
     use HasFactory;
-    public function canciones(){
+    public function Song(){
         return $this->belongsToMany('App\Song');
     }
-    public function subjectUser(){
+    public function User(){
         return $this->belongsTo('App\User');
     }
 }

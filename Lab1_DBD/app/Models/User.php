@@ -12,34 +12,35 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function autenticacion()
+    public function Autenticacion()
     {
         return $this->hasOne('App\Authentication');
     }
-    public function subjectRoles()
+    public function Role()
     {
-        return $this->belongsTo('App\Rol');
+        return $this->belongsTo('App\Role');
     }
 
-    public function courseMetodos()
+    public function Method()
     {
         return $this->hasMany('App\Method');
     }
-    public function courseRating()
+    public function Rating()
     {
-        return $this->hasMany('App\Course');
+        return $this->hasMany('App\Rating');
 
     }
-    public function coursePlaylist()
+    public function Playlist()
     {
         return $this->hasMany('App\Playlist');
 
     }
-    public function courseAlbum()
+    public function Album()
     {
         return $this->hasMany('App\Album');
 
     }
+    
 
     /**
      * The attributes that are mass assignable.
