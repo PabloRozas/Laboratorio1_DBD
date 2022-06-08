@@ -23,8 +23,6 @@ return new class extends Migration
             $table->foreign('id_rol')->references('id')->on('roles');
             $table->integer('num_tarjeta');
             $table->foreign('num_tarjeta')->references('id')->on('methods');
-            $table->integer('id_album')->nullable();
-            $table->foreign('id_album')->references('id')->on('albums');
             // $table->integer('id_playlists')->nullable();
             // $table->foreign('id_playlists')->references('id')->on('playlists');
             $table->integer('id_song')->nullable();
