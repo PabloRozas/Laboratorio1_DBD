@@ -8,7 +8,7 @@ use App\Models\Role;
 use App\Models\Method;
 use App\Models\Song;
 use App\Models\Playlist;
-use App\Models\Album;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'num_tarjeta' => Method::all()->random()->id,
             'remember_token' => Str::random(10),
             //'id_playlists' => Playlist::all()->random()->id,
-            //'id_album' => Album::all()->random()->id,
+            
         ];
     }
 

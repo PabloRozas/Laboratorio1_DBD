@@ -39,9 +39,9 @@ class DatabaseSeeder extends Seeder
                 Bank::factory(10)->create();
                 // 2do - con llaves Foraneas (Con FK)
                 Method::factory(10)->create();
+                User::factory(10)->create();
                 Album::factory(10)->create();
                 Song::factory(10)->create();
-                User::factory(10)->create();
                 Rating::factory(10)->create();
                 Authentication::factory(10)->create();
                 Playlist::factory(10)->create();
