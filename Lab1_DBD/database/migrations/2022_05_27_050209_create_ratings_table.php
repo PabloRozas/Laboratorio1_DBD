@@ -15,14 +15,12 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->string('Comentario',200);
+            $table->string('Comentario', 200);
             $table->integer('Num_Puntaje');
             $table->integer('id_user');
             $table->integer('id_cancion');
-            $table->integer('id_score');
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_cancion')->references('id')->on('songs');
-            $table->foreign('id_score')->references('id')->on('scores');
             $table->timestamps();
         });
     }
