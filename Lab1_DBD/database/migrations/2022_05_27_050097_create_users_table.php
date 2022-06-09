@@ -21,14 +21,15 @@ return new class extends Migration
             $table->timestamp('fecha_creacion')->nullable();
             $table->rememberToken();
             $table->date('fecha_nacimiento');
-            $table->integer('edad');
+            $table->integer('edad')->nullable();
             $table->boolean('suscripcion');
             $table->integer('id_rol');
             $table->foreign('id_rol')->references('id')->on('roles');
-            $table->integer('num_tarjeta');
+            $table->integer('num_tarjeta')->nullable();
             $table->foreign('num_tarjeta')->references('id')->on('methods');
             // $table->integer('id_playlists')->nullable();
             // $table->foreign('id_playlists')->references('id')->on('playlists');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

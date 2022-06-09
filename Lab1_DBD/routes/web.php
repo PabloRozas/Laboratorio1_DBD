@@ -38,9 +38,13 @@ Route::get('/card_types/{id}', [Card_TypeController::class, 'show']);
 Route::post('/card_types/create', [Card_TypeController::class, 'store']);
 Route::get('/card_types/update/{id}', [Card_TypeController::class, 'update']);
 Route::get('/card_types/delete/{id}', [Card_TypeController::class, 'destroy']);
-
 //USERS
 Route::get('/users', [UserController::class,'index']);
+Route::get('/users/{id}', [UserController::class,'show']);
+Route::post('/users/create', [UserController::class,'store']);
+Route::post('/users/update/{id}', [UserController::class,'update']);
+Route::delete('/users/delete/{id}', [UserController::class,'destroy']);
+Route::get('/users/restore/{id}', [UserController::class,'restore']);
 //ROLES
 Route::get('/roles', [RoleController::class,'index']);
 Route::get('/roles/{id}', [RoleController::class,'show']);
