@@ -21,4 +21,8 @@ Route::get('/', function () {
 });
 
 Route::get('/genres', [GenreController::class, 'index']);
-Route::get('/banks', [BankController::class,'index']);
+Route::get('/genres/{id}', [GenreController::class, 'show']);
+Route::post('/genres/create', [GenreController::class, 'store']);
+Route::get('/genres/update/{id}', [GenreController::class, 'update']);
+Route::get('/genres/delete/{id}', [GenreController::class, 'destroy']);
+Route::get('/banks', [BankController::class, 'index']);

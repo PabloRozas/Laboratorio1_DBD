@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Mockery\Matcher\Subset;
 
 class GenreController extends Controller
 {
@@ -41,7 +43,28 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'nombre_genero' => 'required|min:2|max:50'
+
+            ],
+            [
+                'nombre_genero.required' => 'Debe ingresar un nombre',
+                'nombre_genero.min' => 'El nombre debe tener un largo minimo de 2',
+                'nombre_genero.max' => 'El nombre debe tener menos de 50',
+            ]
+        );
+        if ($validator->fails()) {
+            return response($validator->errors());
+        }
+        $newGenre = new Genre();
+        $newGenre->nombre_genero = $request->nombre_genero;
+        $newGenre->save();
+        return response()->json([
+            'respuesta' => 'Se ha creado un nuevo subject',
+            'id' => $newGenre->id
+        ], 201);
     }
 
     /**
@@ -67,7 +90,6 @@ class GenreController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -79,7 +101,34 @@ class GenreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'nombre_genero' => 'required|min:2|max:50'
+
+            ],
+            [
+                'nombre_genero.required' => 'Debe ingresar un nombre',
+                'nombre_genero.min' => 'El nombre debe tener un largo minimo de 2',
+                'nombre_genero.max' => 'El nombre debe tener menos de 50',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response($validator->errors());
+        }
+        $newGenre = new Genre();
+        $newGenre->name = $request->name;
+        $newGenre->save();
+        $genres = Genre::find($id);
+        if (empty($genres)) {
+            return response()->json([]);
+        }
+        $genres->nombre_genero = $request->nombre_genero;
+        return response()->json([
+            'respuesta' => 'Se ha modificado un nuevo subject',
+            'id' => $newGenre->id
+        ], 200);
     }
 
     /**
