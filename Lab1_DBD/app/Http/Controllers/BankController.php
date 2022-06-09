@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bank;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -44,6 +45,23 @@ class BankController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'nombre' => 'required|min:2|max:30'
+            ],
+            [
+                'nombre.required' => 'Debes ingresar un nombre',
+                'nombre.min' => 'El nombre debe tener un largo min de 2 caracteres',
+                'nombre.max' => 'El nombre excede el máximo de caracteres',
+            ]
+            );
+        $newBank = new Bank();
+        $newBank->nombre= $request->name;
+        $newBank->save();
+        return response()->json([
+            'respuesta' => 'Se ha creado un nuevo banco',
+            'id' => $newBank->id
+        ],201);
     }
 
     /**
