@@ -6,6 +6,7 @@ use App\Http\Controllers\BankController;
 use App\Http\Controllers\Card_TypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\LocationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,3 +47,9 @@ Route::get('/roles/{id}', [RoleController::class,'show']);
 Route::post('/roles/create', [RoleController::class,'store']);
 Route::put('/roles/update/{id}', [RoleController::class,'update']);
 Route::delete('/roles/destroy/{id}', [RoleController::class,'destroy']);
+//LOCACIONES
+Route::get('/location', [LocationController::class,'index']);
+Route::get('/location/{id}', [LocationController::class,'show']);
+Route::post('/location/create', [LocationController::class,'store']);
+Route::put('/location/update/{id}', [LocationController::class,'update']);
+Route::delete('/location/destroy/{id}', [LocationController::class,'destroy']);

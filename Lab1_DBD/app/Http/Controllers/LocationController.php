@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class RoleController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $data = Role::all();
+        $data = Location::all();
         if ($data->isEmpty()) {
             return response()->json([
-                'respuesta' => 'No se encuentran Roles en el sistema.',
+                'respuesta' => 'No se encuentran ubicaciones en el sistema.',
             ]);
         }
         return response($data, 200);
@@ -45,21 +45,21 @@ class RoleController extends Controller
         //
         $validator = Validator::make(
             $request->all(),[
-                'nombre_rol'=>'required|min:2|max:50'
+                'nombre_pais'=>'required|min:2|max:20'
             ],[
-                'nombre_rol.required' => 'Debes ingresar un nombre',
-                'nombre_rol.min' => 'El nombre debe tener un largo min de 2 caracteres',
-                'nombre_rol.max' => 'El nombre excede el máximo de caracteres',
+                'nombre_pais.required' => 'Debes ingresar un nombre',
+                'nombre_pais.min' => 'El nombre debe tener un largo min de 2 caracteres',
+                'nombre_pais.max' => 'El nombre excede el máximo de caracteres',
             ]
             );
         if ($validator->fails()) {
             return response($validator->errors());
         }
-        $newSubject = new Role();
-        $newSubject->nombre_rol = $request->nombre_rol;
+        $newSubject = new Location();
+        $newSubject->nombre_pais = $request->nombre_pais;
         $newSubject->save();
         return response()->json([
-            'respuesta' => 'Se ha creado un nuevo rol.',
+            'respuesta' => 'Se ha creado una nueva locacion.',
             'id' => $newSubject->id
         ], 201);
     }
@@ -72,9 +72,9 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $subject = Role::find($id);
+        $subject = Location::find($id);
         if(empty($subject)){
-            return response()->json('El Rol ingresado no existe.');
+            return response()->json('La locacion ingresada no existe.');
         }
         return response($subject);
     }
@@ -101,24 +101,24 @@ class RoleController extends Controller
     {
         $validator = Validator::make(
             $request->all(),[
-                'nombre_rol'=>'required|min:2|max:50'
+                'nombre_pais'=>'required|min:2|max:50'
             ],[
-                'nombre_rol.required' => 'Debes ingresar un nombre',
-                'nombre_rol.min' => 'El nombre debe tener un largo min de 2 caracteres',
-                'nombre_rol.max' => 'El nombre excede el máximo de caracteres',
+                'nombre_pais.required' => 'Debes ingresar un nombre',
+                'nombre_pais.min' => 'El nombre debe tener un largo min de 2 caracteres',
+                'nombre_pais.max' => 'El nombre excede el máximo de caracteres',
             ]
             );
             if ($validator->fails()) {
                 return response($validator->errors());
             }
-            $subject = Role::find($id);
+            $subject = Location::find($id);
             if(empty($subject)){
                 return response()->json([]);
             }
-            $subject->nombre_rol = $request->nombre_rol;
+            $subject->nombre_pais = $request->nombre_pais;
             $subject->save();
             return response()->json([
-                'respuesta' => 'Se ha modificado un nuevo rol.',
+                'respuesta' => 'Se ha modificado una locacion.',
                 'id' => $subject->id
             ], 200);
     }
@@ -131,13 +131,13 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        $subject = Role::find($id);
+        $subject = Location::find($id);
         if(empty($subject)){
             return response()->json([]);
         }
         $subject->delete();
         return response()->json([
-            'respuesta' => 'Se ha eliminado el rol.',
+            'respuesta' => 'Se ha eliminado la locacion.',
         ], 200);
     }
 }
