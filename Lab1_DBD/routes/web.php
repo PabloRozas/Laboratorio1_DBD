@@ -31,7 +31,8 @@ Route::get('/genres/delete/{id}', [GenreController::class, 'destroy']);
 Route::get('/banks', [BankController::class, 'index']);
 Route::post('/banks/create', [BankController::class,'store']);
 Route::get('/banks/{id}', [BankController::class,'show']);
-Route::get('/banks', [BankController::class,'index']);
+Route::put('/banks/update/{id}', [BankController::class,'update']);
+Route::delete('/banks/delete/{id}', [BankController::class,'destroy']);
 //CARD TYPES
 Route::get('/card_types', [Card_TypeController::class, 'index']);
 Route::get('/card_types/{id}', [Card_TypeController::class, 'show']);
