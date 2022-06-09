@@ -12,7 +12,6 @@ use App\Models\User;
 use App\Models\Authentication;
 use App\Models\Role;
 use App\Models\Rating;
-use App\Models\Score;
 use App\Models\Playlist;
 use App\Models\Method;
 use App\Models\Functionality;
@@ -34,7 +33,6 @@ class DatabaseSeeder extends Seeder
                 Functionality::factory(10)->create();
                 Genre::factory(10)->create();
                 Location::factory(10)->create();
-                Score::factory(10)->create();
                 Card_Type::factory(10)->create();
                 Bank::factory(10)->create();
                 // 2do - con llaves Foraneas (Con FK)

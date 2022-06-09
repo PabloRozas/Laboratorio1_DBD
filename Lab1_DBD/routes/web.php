@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\Card_TypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 /*
@@ -30,6 +31,13 @@ Route::get('/banks', [BankController::class, 'index']);
 Route::post('/banks/create', [BankController::class,'store']);
 Route::get('/banks/{id}', [BankController::class,'show']);
 Route::get('/banks', [BankController::class,'index']);
+//CARD TYPES
+Route::get('/card_types', [Card_TypeController::class, 'index']);
+Route::get('/card_types/{id}', [Card_TypeController::class, 'show']);
+Route::post('/card_types/create', [Card_TypeController::class, 'store']);
+Route::get('/card_types/update/{id}', [Card_TypeController::class, 'update']);
+Route::get('/card_types/delete/{id}', [Card_TypeController::class, 'destroy']);
+
 //USERS
 Route::get('/users', [UserController::class,'index']);
 //ROLES

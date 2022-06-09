@@ -9,10 +9,6 @@ class Rating extends Model
 {
     use HasFactory;
 
-    public function Score()
-    {
-        return $this->belongsTo('App\Score');
-    }
     public function User()
     {
         return $this->belongsTo('App\User');
