@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\Card_TypeController;
+use App\Http\Controllers\FuncionalityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\LocationController;
@@ -33,6 +34,8 @@ Route::post('/banks/create', [BankController::class,'store']);
 Route::get('/banks/{id}', [BankController::class,'show']);
 Route::put('/banks/update/{id}', [BankController::class,'update']);
 Route::delete('/banks/delete/{id}', [BankController::class,'destroy']);
+//FUNCIONALITY
+Route::get('/funcionalities',[FuncionalityController::class,'index']);
 //CARD TYPES
 Route::get('/card_types', [Card_TypeController::class, 'index']);
 Route::get('/card_types/{id}', [Card_TypeController::class, 'show']);

@@ -20,7 +20,7 @@ class BankController extends Controller
         $banks = Bank::all();
         if ($banks->isEmpty()){
             return response()->json([
-                'respuesta' => 'No se encuentran subjects',
+                'respuesta' => 'No se encuentran bancos',
             ]);
         }
         return response($banks,200);

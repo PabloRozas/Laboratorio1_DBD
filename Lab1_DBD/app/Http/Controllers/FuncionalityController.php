@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Functionality;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,13 @@ class FuncionalityController extends Controller
     public function index()
     {
         //
+        $functionalities = Functionality::all();
+        if ($functionalities->isEmpty()){
+            return response()->json([
+                'respuesta' => 'No se encuentran funcionalidades',
+            ]);
+        }
+        return response($functionalities,200);
     }
 
     /**
