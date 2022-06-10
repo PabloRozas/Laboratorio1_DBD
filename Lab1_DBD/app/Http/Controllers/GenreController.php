@@ -126,7 +126,7 @@ class GenreController extends Controller
         }
         $genres->nombre_genero = $request->nombre_genero;
         return response()->json([
-            'respuesta' => 'Se ha modificado un nuevo subject',
+            'respuesta' => 'Se ha modificado un nuevo genero',
             'id' => $newGenre->id
         ], 200);
     }

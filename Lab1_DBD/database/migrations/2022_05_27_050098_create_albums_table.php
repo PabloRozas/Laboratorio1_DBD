@@ -15,14 +15,12 @@ return new class extends Migration
     {
         Schema::create('albums', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre');
-            $table->time('duracion');
-            $table->unsignedBigInteger('id_user')->nullable();
+            $table->string('nombre_album');
+            $table->time('duracion')->nullable();
+            $table->integer('id_user')->nullable();
             $table->foreign('id_user')->references('id')->on('users');
-
+            $table->softDeletes();
             $table->timestamps();
-            
-
         });
     }
 

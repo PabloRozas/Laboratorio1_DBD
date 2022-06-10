@@ -8,6 +8,7 @@ use App\Http\Controllers\FuncionalityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\AlbumController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,18 +31,24 @@ Route::get('/genres/update/{id}', [GenreController::class, 'update']);
 Route::delete('/genres/delete/{id}', [GenreController::class, 'destroy']);
 //BANKS
 Route::get('/banks', [BankController::class, 'index']);
-Route::post('/banks/create', [BankController::class,'store']);
-Route::get('/banks/{id}', [BankController::class,'show']);
-Route::put('/banks/update/{id}', [BankController::class,'update']);
-Route::delete('/banks/delete/{id}', [BankController::class,'destroy']);
+Route::post('/banks/create', [BankController::class, 'store']);
+Route::get('/banks/{id}', [BankController::class, 'show']);
+Route::put('/banks/update/{id}', [BankController::class, 'update']);
+Route::delete('/banks/delete/{id}', [BankController::class, 'destroy']);
 //FUNCIONALITY
-Route::get('/funcionalities',[FuncionalityController::class,'index']);
+Route::get('/funcionalities', [FuncionalityController::class, 'index']);
 //CARD TYPES
 Route::get('/card_types', [Card_TypeController::class, 'index']);
 Route::get('/card_types/{id}', [Card_TypeController::class, 'show']);
 Route::post('/card_types/create', [Card_TypeController::class, 'store']);
 Route::get('/card_types/update/{id}', [Card_TypeController::class, 'update']);
 Route::get('/card_types/destroy/{id}', [Card_TypeController::class, 'destroy']);
+//ALBUMS
+Route::get('/albums', [AlbumController::class, 'index']);
+Route::post('/albums/create', [AlbumController::class, 'store']);
+Route::get('/albums/{id}', [AlbumController::class, 'show']);
+Route::put('/albums/update/{id}', [AlbumController::class, 'update']);
+Route::delete('/albums/delete/{id}', [AlbumController::class, 'destroy']);
 //USERS
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);

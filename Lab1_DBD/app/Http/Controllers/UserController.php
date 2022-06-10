@@ -1,5 +1,7 @@
 <?php
 
+// Por ejemplo en el caso, Un artista no podria escuchar canciones
+// Se podria dejar como supuesto
 namespace App\Http\Controllers;
 
 use App\Models\User;

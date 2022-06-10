@@ -60,7 +60,7 @@ class Card_TypeController extends Controller
         $newCard_Type->nombre_tipo = $request->nombre_tipo;
         $newCard_Type->save();
         return response()->json([
-            'respuesta' => 'Se ha creado un nuevo subject',
+            'respuesta' => 'Se ha creado un nuevo tipo de tarjeta',
             'id' => $newCard_Type->id
         ], 201);
     }
@@ -126,7 +126,7 @@ class Card_TypeController extends Controller
         }
         $card_types->nombre_tipo = $request->nombre_tipo;
         return response()->json([
-            'respuesta' => 'Se ha modificado un nuevo subject',
+            'respuesta' => 'Se ha modificado el tipo de tarjeta',
             'id' => $newCard_Type->id
         ], 200);
     }
@@ -139,6 +139,29 @@ class Card_TypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $card_types = Card_Type::find($id);
+        if (empty($card_types)) {
+            return response()->json([]);
+        }
+        $card_types->delete();
+        return response()->json([
+            'respuesta' => 'Se ha desactivado el tipo de tarjeta',
+            'id' => $card_types->id,
+            'nombre_genero' => $card_types->nombre_tipo,
+        ], 200);
+    }
+
+    public function restore($id)
+    {
+        $card_type = Card_Type::onlyTrashed()->find($id);
+        if (empty($card_type)) {
+            return response()->json([]);
+        }
+        $card_type->restore();
+        return response()->json([
+            'respuesta' => 'Se ha activado el tipo de tarjeta',
+            'id' => $card_type->id,
+            'nombre_genero' => $card_type->nombre_tipo,
+        ], 200);
     }
 }
