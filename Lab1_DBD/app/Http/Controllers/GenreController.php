@@ -62,7 +62,7 @@ class GenreController extends Controller
         $newGenre->nombre_genero = $request->nombre_genero;
         $newGenre->save();
         return response()->json([
-            'respuesta' => 'Se ha creado un nuevo subject',
+            'respuesta' => 'Se ha creado un nuevo genero',
             'id' => $newGenre->id
         ], 201);
     }
@@ -139,6 +139,29 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $genres = Genre::find($id);
+        if (empty($genres)) {
+            return response()->json([]);
+        }
+        $genres->delete();
+        return response()->json([
+            'respuesta' => 'Se ha desactivado el genero',
+            'id' => $genres->id,
+            'nombre_genero' => $genres->nombre_genero,
+        ], 200);
+    }
+
+    public function restore($id)
+    {
+        $genres = Genre::onlyTrashed()->find($id);
+        if (empty($genres)) {
+            return response()->json([]);
+        }
+        $genres->restore();
+        return response()->json([
+            'respuesta' => 'Se ha activado el genero',
+            'id' => $genres->id,
+            'nombre_genero' => $genres->nombre_genero,
+        ], 200);
     }
 }

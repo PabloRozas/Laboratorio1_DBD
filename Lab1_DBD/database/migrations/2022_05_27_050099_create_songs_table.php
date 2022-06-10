@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreign('id_pais')->references('id')->on('locations');
             $table->foreign('id_album')->references('id')->on('albums');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

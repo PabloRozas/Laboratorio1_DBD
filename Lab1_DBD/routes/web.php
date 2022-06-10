@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\Card_TypeController;
+use App\Http\Controllers\FuncionalityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\LocationController;
@@ -26,34 +27,37 @@ Route::get('/genres', [GenreController::class, 'index']);
 Route::get('/genres/{id}', [GenreController::class, 'show']);
 Route::post('/genres/create', [GenreController::class, 'store']);
 Route::get('/genres/update/{id}', [GenreController::class, 'update']);
-Route::get('/genres/delete/{id}', [GenreController::class, 'destroy']);
+Route::delete('/genres/delete/{id}', [GenreController::class, 'destroy']);
 //BANKS
 Route::get('/banks', [BankController::class, 'index']);
 Route::post('/banks/create', [BankController::class,'store']);
 Route::get('/banks/{id}', [BankController::class,'show']);
-Route::get('/banks', [BankController::class,'index']);
+Route::put('/banks/update/{id}', [BankController::class,'update']);
+Route::delete('/banks/delete/{id}', [BankController::class,'destroy']);
+//FUNCIONALITY
+Route::get('/funcionalities',[FuncionalityController::class,'index']);
 //CARD TYPES
 Route::get('/card_types', [Card_TypeController::class, 'index']);
 Route::get('/card_types/{id}', [Card_TypeController::class, 'show']);
 Route::post('/card_types/create', [Card_TypeController::class, 'store']);
 Route::get('/card_types/update/{id}', [Card_TypeController::class, 'update']);
-Route::get('/card_types/delete/{id}', [Card_TypeController::class, 'destroy']);
+Route::get('/card_types/destroy/{id}', [Card_TypeController::class, 'destroy']);
 //USERS
-Route::get('/users', [UserController::class,'index']);
-Route::get('/users/{id}', [UserController::class,'show']);
-Route::post('/users/create', [UserController::class,'store']);
-Route::post('/users/update/{id}', [UserController::class,'update']);
-Route::delete('/users/delete/{id}', [UserController::class,'destroy']);
-Route::get('/users/restore/{id}', [UserController::class,'restore']);
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
+Route::post('/users/create', [UserController::class, 'store']);
+Route::post('/users/update/{id}', [UserController::class, 'update']);
+Route::delete('/users/delete/{id}', [UserController::class, 'destroy']);
+Route::get('/users/restore/{id}', [UserController::class, 'restore']);
 //ROLES
-Route::get('/roles', [RoleController::class,'index']);
-Route::get('/roles/{id}', [RoleController::class,'show']);
-Route::post('/roles/create', [RoleController::class,'store']);
-Route::put('/roles/update/{id}', [RoleController::class,'update']);
-Route::delete('/roles/destroy/{id}', [RoleController::class,'destroy']);
+Route::get('/roles', [RoleController::class, 'index']);
+Route::get('/roles/{id}', [RoleController::class, 'show']);
+Route::post('/roles/create', [RoleController::class, 'store']);
+Route::put('/roles/update/{id}', [RoleController::class, 'update']);
+Route::delete('/roles/destroy/{id}', [RoleController::class, 'destroy']);
 //LOCACIONES
-Route::get('/location', [LocationController::class,'index']);
-Route::get('/location/{id}', [LocationController::class,'show']);
-Route::post('/location/create', [LocationController::class,'store']);
-Route::put('/location/update/{id}', [LocationController::class,'update']);
-Route::delete('/location/destroy/{id}', [LocationController::class,'destroy']);
+Route::get('/location', [LocationController::class, 'index']);
+Route::get('/location/{id}', [LocationController::class, 'show']);
+Route::post('/location/create', [LocationController::class, 'store']);
+Route::put('/location/update/{id}', [LocationController::class, 'update']);
+Route::delete('/location/destroy/{id}', [LocationController::class, 'destroy']);

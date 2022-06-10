@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Song extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
+    protected $dates = ['deleted_at'];
     public function Genre()
     {
         return $this->belongsTo('App\Genre');
@@ -23,12 +25,12 @@ class Song extends Model
         return $this->belongsTo('App\Album');
     }
 
-    public function Playlists(){
+    public function Playlists()
+    {
         return $this->belongsToMany('App\Playlist');
     }
     public function Rating()
     {
         return $this->hasMany('App\Rating');
     }
-
 }
