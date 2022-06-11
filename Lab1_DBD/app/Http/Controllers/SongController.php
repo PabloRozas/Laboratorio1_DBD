@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Song;
 use Illuminate\Http\Request;
 
 class SongController extends Controller
@@ -14,6 +15,13 @@ class SongController extends Controller
     public function index()
     {
         //
+        $songs = Song::all();
+        if($songs->isEmpty()){
+            return response()->json([
+                'respuesta' => 'No se encuentran canciones',
+            ]);
+        }
+        return responde($songs);
     }
 
     /**
