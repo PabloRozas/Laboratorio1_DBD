@@ -14,6 +14,13 @@ class AuthenticationController extends Controller
     public function index()
     {
         //
+        $authentications =  Authentication::all();
+        if($authentications->isEmpty()){
+            return response()->json([
+                'respuesta' => 'No se encuentran autenticaciones',
+            ]);
+        }
+        return response($authentications);
     }
 
     /**
