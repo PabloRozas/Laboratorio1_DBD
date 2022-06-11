@@ -21,7 +21,7 @@ class SongController extends Controller
                 'respuesta' => 'No se encuentran canciones',
             ]);
         }
-        return response($songs);
+        return response($songs,200);
     }
 
     /**

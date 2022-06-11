@@ -14,6 +14,13 @@ class RatingsController extends Controller
     public function index()
     {
         //
+        $ratings =  Rating::all();
+        if($ratings->isEmpty()){
+            return response()->json([
+                'respuesta' => 'No se encuentran calificaciones',
+            ]);
+        }
+        return response($ratings,200);
     }
 
     /**

@@ -20,7 +20,7 @@ class AuthenticationController extends Controller
                 'respuesta' => 'No se encuentran autenticaciones',
             ]);
         }
-        return response($authentications);
+        return response($authentications,200);
     }
 
     /**
