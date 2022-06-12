@@ -32,5 +32,4 @@ class SongFactory extends Factory
             'id_pais' => Location::all()->random()->id,
         ];
     }
-    protected $dates = ['deleted_at'];
 }

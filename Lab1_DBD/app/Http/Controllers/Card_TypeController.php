@@ -18,7 +18,7 @@ class Card_TypeController extends Controller
         $card_types = Card_Type::all();
         if ($card_types->isEmpty()) {
             return response()->json([
-                'respuesta' => 'No se encuentran subjects',
+                'respuesta' => 'No se encuentran tipos de tarjetas',
             ]);
         }
         return response($card_types, 200);
