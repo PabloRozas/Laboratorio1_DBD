@@ -16,12 +16,12 @@ class SongController extends Controller
     public function index()
     {
         $songs = Song::all();
-        if($songs->isEmpty()){
+        if ($songs->isEmpty()) {
             return response()->json([
                 'respuesta' => 'No se encuentran canciones',
             ]);
         }
-        return response($songs,200);
+        return response($songs, 200);
     }
 
     /**
@@ -44,12 +44,15 @@ class SongController extends Controller
     {
         //
         $validator = Validator::make(
-            $request->all(),[
+            $request->all(),
+            [
                 'titulo' => 'required|min:2|max:200',
                 'duracion' => 'required',
                 'id_genero' => 'required',
                 'id_pais' => 'required',
-                'id_album' => 'required'
+                'id_album' => 'required',
+                'restriccion_edad' => 'required',
+                'fecha_creacion' => 'required'
             ],
             [
                 'titulo.required' => 'Debes ingresar un título.',
@@ -58,22 +61,26 @@ class SongController extends Controller
                 'duracion.required' => 'Debe ingresar una duracion',
                 'id_genero.required',
                 'id_pais.required',
-                'id_album.required'
-            ]);
-        if ($validator->fails()){
+                'restriccion_edad.required',
+                'fecha_creacion.required'
+            ]
+        );
+        if ($validator->fails()) {
             return response($validator->errors());
         }
         $newSong = new Song();
-        $newSong->Titulo=$request->Titulo;
-        $newSong->duracion=$request->duracion;
-        $newSong->id_genero=$requeste->id_genero;
-        $newSong->id_pais=$request->id_pais;
-        $newSong->id_album=$request->id_album;
+        $newSong->titulo = $request->titulo;
+        $newSong->duracion = $request->duracion;
+        $newSong->id_genero = $request->id_genero;
+        $newSong->id_pais = $request->id_pais;
+        $newSong->id_album = $request->id_album;
+        $newSong->restriccion_edad = $request->restriccion_edad;
+        $newSong->fecha_creacion = $request->fecha_creacion;
         $newSong->save();
         return response()->json([
             'respuesta' => 'Se ha creado una nueva canción',
-            'id' => $newSong ->id
-        ],201);
+            'id' => $newSong->id
+        ], 201);
     }
 
     /**
@@ -86,7 +93,7 @@ class SongController extends Controller
     {
         //
         $song = Song::find($id);
-        if(empty($song)){
+        if (empty($song)) {
             return response()->json([
                 'respuesta' => 'No se encuentra canción',
             ]);

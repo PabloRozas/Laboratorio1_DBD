@@ -21,7 +21,7 @@ class SongFactory extends Factory
     public function definition()
     {
         return [
-            'Titulo' => $this->faker->words(2, true),
+            'titulo' => $this->faker->words(2, true),
             'fecha_subida' => $this->faker->date(),
             'duracion' => $this->faker->dateTimeBetween($min = '00:00:05', $max = '00:06:00'),
             'restriccion_edad' => $this->faker->boolean(),

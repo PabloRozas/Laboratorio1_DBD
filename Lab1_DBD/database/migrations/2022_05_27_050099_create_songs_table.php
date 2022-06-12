@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('songs', function (Blueprint $table) {
             $table->id();
-            $table->string('Titulo');
-            $table->string('fecha_subida');
+            $table->string('titulo');
+            $table->string('fecha_subida')->nullable();
             $table->time('duracion');
-            $table->boolean('restriccion_edad');
-            $table->integer('reproducciones');
+            $table->boolean('restriccion_edad')->nullable();
+            $table->integer('reproducciones')->nullable();
             $table->date('fecha_creacion');
             $table->integer('id_genero')->nullable();
             $table->integer('id_pais')->nullable();
