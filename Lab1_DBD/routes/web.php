@@ -9,6 +9,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\SongController;
+use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\RatingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,7 +73,8 @@ Route::put('/location/update/{id}', [LocationController::class, 'update']);
 Route::delete('/location/destroy/{id}', [LocationController::class, 'destroy']);
 //CANCIONES
 Route::get('/songs', [SongController::class, 'index']);
+Route::get('/songs/{id}', [SongController::class, 'show']);
 //AUTENTICACIONES
 Route::get('/authentications', [AuthenticationController::class, 'index']);
 //CALIFICACIONES
-Route::get('/ratings', [RatingsController::class, 'index']);
+Route::get('/ratings', [RatingController::class, 'index']);

@@ -53,6 +53,13 @@ class SongController extends Controller
     public function show($id)
     {
         //
+        $song = Song::find($id);
+        if(empty($song)){
+            return response()->json([
+                'respuesta' => 'No se encuentra canción',
+            ]);
+        }
+        return response($song,200);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Authentication;
 use Illuminate\Http\Request;
 
 class AuthenticationController extends Controller
