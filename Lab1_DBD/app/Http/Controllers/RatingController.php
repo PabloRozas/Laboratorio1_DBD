@@ -54,6 +54,13 @@ class RatingController extends Controller
     public function show($id)
     {
         //
+        $rating = Rating::find($id);
+        if(empty($rating)){
+            return response()->json([
+                'respuesta' => 'No se encuentra calificación.',
+            ]);
+        }
+        return response($rating);
     }
 
     /**

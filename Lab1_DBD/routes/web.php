@@ -79,3 +79,4 @@ Route::get('/authentications', [AuthenticationController::class, 'index']);
 Route::get('/authentications/{id}', [AuthenticationController::class, 'show']);
 //CALIFICACIONES
 Route::get('/ratings', [RatingController::class, 'index']);
+Route::get('/ratings/{id}', [RatingController::class, 'show']);
