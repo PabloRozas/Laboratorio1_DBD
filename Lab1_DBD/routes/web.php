@@ -68,3 +68,9 @@ Route::get('/location/{id}', [LocationController::class, 'show']);
 Route::post('/location/create', [LocationController::class, 'store']);
 Route::put('/location/update/{id}', [LocationController::class, 'update']);
 Route::delete('/location/destroy/{id}', [LocationController::class, 'destroy']);
+//CANCIONES
+Route::get('/songs', [SongController::class, 'index']);
+//AUTENTICACIONES
+Route::get('/authentications', [AuthenticationController::class, 'index']);
+//CALIFICACIONES
+Route::get('/ratings', [RatingsController::class, 'index']);

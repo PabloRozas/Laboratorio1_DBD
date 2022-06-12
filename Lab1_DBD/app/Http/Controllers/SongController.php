@@ -14,7 +14,6 @@ class SongController extends Controller
      */
     public function index()
     {
-        //
         $songs = Song::all();
         if($songs->isEmpty()){
             return response()->json([
