@@ -54,6 +54,13 @@ class AuthenticationController extends Controller
     public function show($id)
     {
         //
+        $authentication = Authentication::find($id);
+        if(empty($authentication)){
+            return response()->json([
+                'respuesta' => 'No se encuentra autenticación',
+            ]);
+        }
+        return response($authentication);
     }
 
     /**

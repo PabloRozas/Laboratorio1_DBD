@@ -76,5 +76,6 @@ Route::get('/songs', [SongController::class, 'index']);
 Route::get('/songs/{id}', [SongController::class, 'show']);
 //AUTENTICACIONES
 Route::get('/authentications', [AuthenticationController::class, 'index']);
+Route::get('/authentications/{id}', [AuthenticationController::class, 'show']);
 //CALIFICACIONES
 Route::get('/ratings', [RatingController::class, 'index']);

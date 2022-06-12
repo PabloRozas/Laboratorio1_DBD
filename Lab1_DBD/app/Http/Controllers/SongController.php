@@ -59,7 +59,7 @@ class SongController extends Controller
                 'respuesta' => 'No se encuentra canción',
             ]);
         }
-        return response($song,200);
+        return response($song);
     }
 
     /**
