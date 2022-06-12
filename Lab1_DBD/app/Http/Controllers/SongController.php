@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Song;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SongController extends Controller
 {
@@ -42,6 +43,37 @@ class SongController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'titulo' => 'required|min:2|max:200',
+                'duracion' => 'required',
+                'id_genero' => 'required',
+                'id_pais' => 'required',
+                'id_album' => 'required'
+            ],
+            [
+                'titulo.required' => 'Debes ingresar un título.',
+                'titulo.min' => 'El título debe tener al menos 2 caracteres.',
+                'titulo.max' => 'El título exce el máximo de caracteres.',
+                'duracion.required' => 'Debe ingresar una duracion',
+                'id_genero.required',
+                'id_pais.required',
+                'id_album.required'
+            ]);
+        if ($validator->fails()){
+            return response($validator->errors());
+        }
+        $newSong = new Song();
+        $newSong->Titulo=$request->Titulo;
+        $newSong->duracion=$request->duracion;
+        $newSong->id_genero=$requeste->id_genero;
+        $newSong->id_pais=$request->id_pais;
+        $newSong->id_album=$request->id_album;
+        $newSong->save();
+        return response()->json([
+            'respuesta' => 'Se ha creado una nueva canción',
+            'id' => $newSong ->id
+        ],201);
     }
 
     /**

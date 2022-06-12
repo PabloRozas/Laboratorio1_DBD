@@ -74,6 +74,7 @@ Route::delete('/location/destroy/{id}', [LocationController::class, 'destroy']);
 //CANCIONES
 Route::get('/songs', [SongController::class, 'index']);
 Route::get('/songs/{id}', [SongController::class, 'show']);
+Route::post('/songs/create', [SongController::class, 'store']);
 //AUTENTICACIONES
 Route::get('/authentications', [AuthenticationController::class, 'index']);
 Route::get('/authentications/{id}', [AuthenticationController::class, 'show']);
