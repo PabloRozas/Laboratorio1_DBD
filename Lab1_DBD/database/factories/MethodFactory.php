@@ -24,6 +24,7 @@ class MethodFactory extends Factory
             'nombre_titular' => $this->faker->name(),
             'cod_banks' => Bank::all()->random()->id,
             'cod_tarjeta' => Card_Type::all()->random()->id,
+            'num_tarjeta' => $this->faker->numberBetween($min = 4000000000000000,$max = 5999999999999999)
         ];
     }
 }

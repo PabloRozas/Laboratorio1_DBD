@@ -12,6 +12,7 @@ use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\MethodController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,3 +82,9 @@ Route::get('/authentications/{id}', [AuthenticationController::class, 'show']);
 //CALIFICACIONES
 Route::get('/ratings', [RatingController::class, 'index']);
 Route::get('/ratings/{id}', [RatingController::class, 'show']);
+//METODOS DE PAGO
+Route::get('/methods', [MethodController::class, 'index']);
+Route::get('/methods/{id}', [MethodController::class, 'show']);
+Route::post('/methods/create', [MethodController::class, 'store']);
+Route::post('/methods/update/{id}', [MethodController::class, 'update']);
+Route::delete('/methods/destroy/{id}', [MethodController::class, 'destroy']);

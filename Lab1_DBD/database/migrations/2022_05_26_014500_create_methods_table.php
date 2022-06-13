@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('cod_tarjeta');
             $table->foreign('cod_banks')->references('id')->on('banks');
             $table->foreign('cod_tarjeta')->references('id')->on('card__types');
+            $table->bigInteger('num_tarjeta');
             $table->timestamps();
         });
     }
