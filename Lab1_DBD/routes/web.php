@@ -78,16 +78,21 @@ Route::get('/songs/{id}', [SongController::class, 'show']);
 Route::post('/songs/create', [SongController::class, 'store']);
 Route::put('/songs/update/{id}', [SongController::class, 'update']);
 Route::delete('/songs/destroy/{id}', [SongController::class, 'destroy']);
+Route::get('/songs/restore/{id}', [SongController::class, 'restore']);
 //AUTENTICACIONES
 Route::get('/authentications', [AuthenticationController::class, 'index']);
 Route::get('/authentications/{id}', [AuthenticationController::class, 'show']);
 Route::post('/authentications/create', [AuthenticationController::class, 'store']);
 Route::put('/authentications/update/{id}', [AuthenticationController::class, 'update']);
+Route::delete('/authentications/destroy/{id}', [AuthenticationController::class, 'destroy']);
+Route::get('/authentications/restore/{id}', [AuthenticationController::class, 'restore']);
 //CALIFICACIONES
 Route::get('/ratings', [RatingController::class, 'index']);
 Route::get('/ratings/{id}', [RatingController::class, 'show']);
 Route::post('/ratings/create', [RatingController::class, 'store']);
 Route::put('/rating/update/{id}', [RatingController::class, 'update']);
+Route::delete('/rating/destroy/{id}', [RatingController::class, 'destroy']);
+Route::get('/rating/restore/{id}', [RatingController::class, 'restore']);
 //METODOS DE PAGO
 Route::get('/methods', [MethodController::class, 'index']);
 Route::get('/methods/{id}', [MethodController::class, 'show']);

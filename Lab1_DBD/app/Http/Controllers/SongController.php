@@ -141,11 +141,11 @@ class SongController extends Controller
                 'titulo.required' => 'Debes ingresar un título.',
                 'titulo.min' => 'El título debe tener al menos 2 caracteres.',
                 'titulo.max' => 'El título excede el máximo de caracteres.',
-                'duracion.required' => 'Debe ingresar una duracion',
-                'id_genero.required',
-                'id_pais.required',
-                'fecha_creacion.required',
-                'restriccion_edad.required'
+                'duracion.required' => 'Debe ingresar una duracion.',
+                'id_genero.required' => 'Debe ingresar id del género.',
+                'id_pais.required' => 'Debe ingresar id del país.',
+                'fecha_creacion.required' => 'Debe ingresar fecha de creación.',
+                'restriccion_edad.required' => 'Debe indicar si tiene restriccion de edad o no.'
             ]
         );
 
@@ -197,6 +197,22 @@ class SongController extends Controller
             'respuesta' => 'Se ha desactivado la canción:',
             'id' => $song->id,
             'titulo' => $song->titulo
+        ], 200);
+    }
+
+    public function restore($id)
+    {
+        $song = Song::onlyTrashed()->find($id);
+        if (empty($song)) {
+            return response()->json([
+                'La canción no ha sido desactivado con anterioridad.'
+            ]);
+        }
+        $song->restore();
+        return response()->json([
+            'respuesta' => 'Se ha activado la cancion.',
+            'id' => $song->id,
+            'titulo' => $song->titulo,
         ], 200);
     }
 }
