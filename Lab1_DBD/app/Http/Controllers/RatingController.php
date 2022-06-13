@@ -147,7 +147,7 @@ class RatingController extends Controller
         $rating->id_cancion = $request->id_cancion;
         $rating->save();
         return response()->json([
-            'respuesta' => 'Se ha modificado la calificación',
+            'respuesta' => 'Se ha modificado la calificación.',
             'id' => $rating->id
         ],200);
     }
