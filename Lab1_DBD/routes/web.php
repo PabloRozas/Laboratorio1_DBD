@@ -76,15 +76,17 @@ Route::delete('/location/destroy/{id}', [LocationController::class, 'destroy']);
 Route::get('/songs', [SongController::class, 'index']);
 Route::get('/songs/{id}', [SongController::class, 'show']);
 Route::post('/songs/create', [SongController::class, 'store']);
-Route::put('/songs/update/{id}', [SongController::class, 'update']);
+Route::put('/song/update/{id}', [SongController::class, 'update']);
 //AUTENTICACIONES
 Route::get('/authentications', [AuthenticationController::class, 'index']);
 Route::get('/authentications/{id}', [AuthenticationController::class, 'show']);
 Route::post('/authentications/create', [AuthenticationController::class, 'store']);
+Route::put('/authentications/update/{id}', [AuthenticationController::class, 'update']);
 //CALIFICACIONES
 Route::get('/ratings', [RatingController::class, 'index']);
 Route::get('/ratings/{id}', [RatingController::class, 'show']);
 Route::post('/ratings/create', [RatingController::class, 'store']);
+Route::put('/rating/update/{id}', [RatingController::class, 'update']);
 //METODOS DE PAGO
 Route::get('/methods', [MethodController::class, 'index']);
 Route::get('/methods/{id}', [MethodController::class, 'show']);

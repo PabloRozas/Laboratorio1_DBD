@@ -114,6 +114,42 @@ class RatingController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'comentario' => 'required|min:2|max:200',
+                'num_puntaje' => 'required',
+                'id_user' => 'required',
+                'id_cancion' => 'required',
+            ],
+            [
+                'comentario.required' => 'Debes ingresar un comentario.',
+                'comentario.min' => 'El comentario debe tener al menos 2 caracteres.',
+                'comentario.max' => 'El comentario excede el máximo de caracteres.',
+                'num_puntaje.required' => 'Debe ingresar un puntaje',
+                'id_user.required',
+                'id_cancion.required',
+            ]
+            );
+        if ($validator->fails()){
+            return response($validator->errors());
+        }
+        $rating = Rating::find($id);
+        if(empty($rating))
+        {
+            return response()->json([]);
+        }
+        $rating->comentario = $request->comentario;
+        $rating->num_puntaje = $request->num_puntaje;
+        $rating->id_user = $request->id_user;
+        $rating->id_cancion = $request->id_cancion;
+        $rating->save();
+        return response()->json([
+            'respuesta' => 'Se ha modificado la calificación',
+            'id' => $rating->id
+        ],200);
     }
 
     /**
