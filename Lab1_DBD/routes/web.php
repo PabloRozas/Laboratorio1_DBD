@@ -31,7 +31,7 @@ Route::get('/', function () {
 Route::get('/genres', [GenreController::class, 'index']);
 Route::get('/genres/{id}', [GenreController::class, 'show']);
 Route::post('/genres/create', [GenreController::class, 'store']);
-Route::get('/genres/update/{id}', [GenreController::class, 'update']);
+Route::put('/genres/update/{id}', [GenreController::class, 'update']);
 Route::delete('/genres/delete/{id}', [GenreController::class, 'destroy']);
 //BANKS
 Route::get('/banks', [BankController::class, 'index']);

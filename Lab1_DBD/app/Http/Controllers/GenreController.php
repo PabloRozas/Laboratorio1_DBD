@@ -118,7 +118,7 @@ class GenreController extends Controller
             return response($validator->errors());
         }
         $newGenre = new Genre();
-        $newGenre->name = $request->name;
+        $newGenre->nombre_genero = $request->nombre_genero;
         $newGenre->save();
         $genres = Genre::find($id);
         if (empty($genres)) {
