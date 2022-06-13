@@ -185,7 +185,7 @@ class SongController extends Controller
      */
     public function destroy($id)
     {
-        $song = User::find($id);
+        $song = Song::find($id);
         if (empty($song)) {
             return response()->json([
                 'respuesta' => 'No se encuentra canción.',
