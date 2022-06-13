@@ -110,6 +110,35 @@ class AuthenticationController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'contrasena' => 'required|min:2|max:30',
+                'id_usuario' => 'required',
+            ],
+            [
+                'contrasena.required' => 'Debes ingresar una contraseña.',
+                'contrasena.min' => 'La contrasena debe tener al menos de 8 caracteres.',
+                'contrasena.max' => 'La contrasena excede el máximo de caracteres.',
+                'id_usuario.required',
+
+            ]
+        );
+        if ($validator->fails()) {
+            return response($validator->errors());
+        }
+        $authentication = Authentication::find($id);
+        if(empty($authentication))
+        {
+            return response()->json([]);
+        }
+        $authentication->contrasena = $request->contrasena;
+        $authentication->id_usuario = $request->id_usuario;
+        $authentication->save();
+        return response()->json([
+            'respuesta' => 'Se ha modificado la autentificación',
+            'id' => $authentication->id
+        ],200);
     }
 
     /**

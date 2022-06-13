@@ -133,8 +133,8 @@ class SongController extends Controller
                 'id_genero' => 'required',
                 'id_pais' => 'required',
                 'id_album' => 'required',
-                'restriccion_edad' => 'required',
-                'fecha_creacion' => 'required'
+                'fecha_creacion' => 'required',
+                'restriccion_edad' => 'required'
 
             ],
             [
@@ -144,8 +144,8 @@ class SongController extends Controller
                 'duracion.required' => 'Debe ingresar una duracion',
                 'id_genero.required',
                 'id_pais.required',
-                'restriccion_edad.required',
-                'fecha_creacion.required'
+                'fecha_creacion.required',
+                'restriccion_edad.required'
             ]
         );
 
@@ -156,19 +156,24 @@ class SongController extends Controller
         $song = Song::find($id);  
 
         if (empty($song)){
-            return response()->json([]);
+            return response()->json([
+                'respuesta' => 'No se encuentra canción.',
+            ]);
         }
         $song->titulo = $request->titulo;
         $song->duracion = $request->duracion;
         $song->id_genero = $request->id_genero;
         $song->id_pais = $request->id_pais;
         $song->id_album = $request->id_album;
+        $song->fecha_creacion = $request->fecha_creacion;
         $song->restriccion_edad = $request->restriccion_edad;
-        $song->fecha_creacion = $request->fecha_creacion;        
+
         $song->save();
+
         return response()->json([
-            'respuesta' => 'Se ha modificado la canción',
-            'id' => $song->id
+            'respuesta' => 'Se ha modificado la canción:',
+            'id' => $song->id,
+            'titulo' => $song->titulo
         ],200);
     }
 
@@ -180,6 +185,18 @@ class SongController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $song = User::find($id);
+        if (empty($song)) {
+            return response()->json([
+                'respuesta' => 'No se encuentra canción.',
+            ]);
+        }
+        
+        $song->delete();
+        return response()->json([
+            'respuesta' => 'Se ha desactivado la canción:',
+            'id' => $song->id,
+            'titulo' => $song->titulo
+        ], 200);
     }
 }
