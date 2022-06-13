@@ -153,9 +153,7 @@ class SongController extends Controller
         $song = Song::find($id);  
 
         if (empty($song)){
-            return response()->json([
-                'respuesta' => 'No se encuentran canciones',
-            ]);
+            return response()->json([]);
         }
 
         $song->titulo = $request->titulo;

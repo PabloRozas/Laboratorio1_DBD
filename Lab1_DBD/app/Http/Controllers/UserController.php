@@ -157,21 +157,21 @@ class UserController extends Controller
         if ($validator->fails()) {
             return response($validator->errors());
         }
-        $subject = User::find($id);
-        if (empty($subject)) {
+        $user = User::find($id);
+        if (empty($user)) {
             return response()->json(['User no válido.']);
         }
         //$subject->name = $request->name;
-        $subject->username = $request->username;
+        $user->username = $request->username;
         //$subject->email =$request->email;
         //$subject->fecha_nacimiento = $request->fecha_nacimiento;
-        $subject->id_rol = $request->id_rol;
-        $subject->suscripcion = $request->suscripcion;
+        $user->id_rol = $request->id_rol;
+        $user->suscripcion = $request->suscripcion;
 
-        $subject->save();
+        $user->save();
         return response()->json([
             'respuesta' => 'Se ha modificado el Usuario.',
-            'id' => $subject->id
+            'id' => $user->id
         ], 200);
     }
 
@@ -181,23 +181,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id)    //Funciona correctamente
     {
-        $subject = User::find($id);
-        if (empty($subject)) {
+        $user = User::find($id);
+        if (empty($user)) {
             return response()->json([]);
         }
-        //$subject->valida=false; // no se actualiza :(
-        $subject->delete(); // error con llaves foráneas
+        $user->delete();         
         return response()->json([
             'respuesta' => 'Se ha desactivado el usuario.',
-            'id' => $subject->id,
-            'username' => $subject->username,
-            'suscrito' => $subject->suscripcion,
+            'id' => $user->id,
+            'username' => $user->username,
+            'suscrito' => $user->suscripcion,
         ], 200);
     }
 
-    public function restore($id)
+    public function restore($id)    //Funciona Correctamente
     {
         $user = User::onlyTrashed()->find($id);
         if (empty($user)) {
