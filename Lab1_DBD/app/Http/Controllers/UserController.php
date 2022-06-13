@@ -74,12 +74,13 @@ class UserController extends Controller
             return response($validator->errors());
         }
         $user = new User;
-        $user->name = $request->name;
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->fecha_nacimiento = $request->fecha_nacimiento;
-        $user->suscripcion = false;
-        $user->id_rol = $request->id_rol;
+        $user->name = $request->name;               //Se pide un usuario que no exista
+        $user->username = $request->username;       //Username que no exista
+        $user->email = $request->email;             //email con formato email
+        $user->fecha_nacimiento = $request->fecha_nacimiento;   //Fecha de nacimiento con formato AAAA/MM/DD
+        $user->suscripcion = false;                 //Se inicia con la creacion en falso para suscripcion
+        $user->num_tarjeta = null;                  //Al no tener suscripcion no se crea realcion con tabla de pago
+        $user->id_rol = $request->id_rol;           //Se le da un rol al usuario dependiendo de sus permisos
         $user->fecha_creacion = now();
         $edad = date_diff(date_create($user->fecha_nacimiento), date_create($user->fecha_creacion));
         $user->edad = $edad->format('%y');
@@ -134,7 +135,7 @@ class UserController extends Controller
             [
                 //'name'=>'required|min:4|max:30|unique:users,name',
                 'username' => 'required|min:4|max:100|unique:users,username',
-                //'email'=>'required|max:30|unique:users,email',
+                'email'=>'required|max:30|unique:users,email',
                 //'fecha_nacimiento'=>'required',
                 'id_rol' => 'required',
                 'suscripcion' => 'required'
@@ -147,8 +148,8 @@ class UserController extends Controller
                 'username.min' => 'El nickname debe ser de largo mínimo :min',
                 'username.max' => 'El nickname debe ser de largo máximo :max',
                 'username.required' => 'Debe ingresar un nickname de usuario',
-                //'email.required'=>'Debe ingresar un correo electronico',
-                //'email.unique'=>'El correo electronico ya existe',
+                'email.required'=>'Debe ingresar un correo electronico',
+                'email.unique'=>'El correo electronico ya existe',
                 //'fecha_nacimiento.required'=>'Debe ingresar una fecha de nacimiento',
                 'id_rol.required' => 'Debes seleccionar un rol',
                 'suscripcion' => 'Ingresa una suscripcion'
@@ -163,7 +164,7 @@ class UserController extends Controller
         }
         //$subject->name = $request->name;
         $user->username = $request->username;
-        //$subject->email =$request->email;
+        $user->email =$request->email;
         //$subject->fecha_nacimiento = $request->fecha_nacimiento;
         $user->id_rol = $request->id_rol;
         $user->suscripcion = $request->suscripcion;

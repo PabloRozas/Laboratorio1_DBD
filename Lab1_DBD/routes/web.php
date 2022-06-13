@@ -57,7 +57,7 @@ Route::delete('/albums/delete/{id}', [AlbumController::class, 'destroy']);
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
 Route::post('/users/create', [UserController::class, 'store']);
-Route::post('/users/update/{id}', [UserController::class, 'update']);
+Route::put('/users/update/{id}', [UserController::class, 'update']);
 Route::delete('/users/delete/{id}', [UserController::class, 'destroy']);
 Route::get('/users/restore/{id}', [UserController::class, 'restore']);
 //ROLES
