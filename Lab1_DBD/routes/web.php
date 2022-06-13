@@ -79,9 +79,11 @@ Route::post('/songs/create', [SongController::class, 'store']);
 //AUTENTICACIONES
 Route::get('/authentications', [AuthenticationController::class, 'index']);
 Route::get('/authentications/{id}', [AuthenticationController::class, 'show']);
+Route::post('/authentications/create', [AuthenticationController::class, 'store']);
 //CALIFICACIONES
 Route::get('/ratings', [RatingController::class, 'index']);
 Route::get('/ratings/{id}', [RatingController::class, 'show']);
+Route::post('/ratings/create', [RatingController::class, 'store']);
 //METODOS DE PAGO
 Route::get('/methods', [MethodController::class, 'index']);
 Route::get('/methods/{id}', [MethodController::class, 'show']);

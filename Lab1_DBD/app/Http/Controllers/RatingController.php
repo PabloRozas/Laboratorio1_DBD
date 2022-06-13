@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rating;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RatingController extends Controller
 {
@@ -42,7 +43,36 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'comentario' => 'required|min:2|max:200',
+                'num_puntaje' => 'required',
+                'id_user' => 'required',
+                'id_cancion' => 'required',
+            ],
+            [
+                'comentario.required' => 'Debes ingresar un comentario.',
+                'comentario.min' => 'El comentario debe tener al menos 2 caracteres.',
+                'comentario.max' => 'El comentario excede el máximo de caracteres.',
+                'num_puntaje.required' => 'Debe ingresar un puntaje',
+                'id_user.required',
+                'id_cancion.required',
+            ]
+        );
+        if ($validator->fails()) {
+            return response($validator->errors());
+        }
+        $newRating = new Rating();
+        $newRating->comentario = $request->comentario;
+        $newRating->num_puntaje = $request->num_puntaje;
+        $newRating->id_user = $request->id_user;
+        $newRating->id_cancion = $request->id_cancion;
+        $newRating->save();
+        return response()->json([
+            'respuesta' => 'Se realizó correctamente el comentario.',
+            'id' => $newRating->id
+        ], 201);
     }
 
     /**

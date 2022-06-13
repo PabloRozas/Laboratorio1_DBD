@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Authentication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AuthenticationController extends Controller
 {
@@ -43,6 +44,31 @@ class AuthenticationController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'contrasena' => 'required|min:2|max:30',
+                'id_usuario' => 'required',
+            ],
+            [
+                'contrasena.required' => 'Debes ingresar una contraseña.',
+                'contrasena.min' => 'La contrasena debe tener al menos de 8 caracteres.',
+                'contrasena.max' => 'La contrasena excede el máximo de caracteres.',
+                'id_usuario.required',
+
+            ]
+        );
+        if ($validator->fails()) {
+            return response($validator->errors());
+        }
+        $newAuthentication = new Authentication();
+        $newAuthentication->contrasena = $request->contrasena;
+        $newAuthentication->id_usuario = $request->id_usuario;
+        $newAuthentication->save();
+        return response()->json([
+            'respuesta' => 'Se realizó correctamente la contraseña.',
+            'id' => $newAuthentication->id
+        ], 201);
     }
 
     /**

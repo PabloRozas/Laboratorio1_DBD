@@ -57,7 +57,7 @@ class SongController extends Controller
             [
                 'titulo.required' => 'Debes ingresar un título.',
                 'titulo.min' => 'El título debe tener al menos 2 caracteres.',
-                'titulo.max' => 'El título exce el máximo de caracteres.',
+                'titulo.max' => 'El título excede el máximo de caracteres.',
                 'duracion.required' => 'Debe ingresar una duracion',
                 'id_genero.required',
                 'id_pais.required',
