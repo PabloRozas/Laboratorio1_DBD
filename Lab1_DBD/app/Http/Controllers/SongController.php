@@ -122,6 +122,51 @@ class SongController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'titulo' => 'required|min:2|max:200',
+                'duracion' => 'required',
+                'id_genero' => 'required',
+                'id_pais' => 'required',
+                'id_album' => 'required',
+                'restriccion_edad' => 'required',
+                'fecha_creacion' => 'required'
+
+            ],
+            [
+                'titulo.required' => 'Debes ingresar un título.',
+                'titulo.min' => 'El título debe tener al menos 2 caracteres.',
+                'titulo.max' => 'El título excede el máximo de caracteres.',
+                'duracion.required' => 'Debe ingresar una duracion',
+                'id_genero.required',
+                'id_pais.required',
+                'restriccion_edad.required',
+                'fecha_creacion.required'
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response($validator->errors());
+        }
+
+        $song = Song::find($id);  
+
+        if (empty($song)){
+            return response()->json([
+                'respuesta' => 'No se encuentran canciones',
+            ]);
+        }
+
+        $song->titulo = $request->titulo;
+
+
+        $song->save();
+        
+        return response()->json([
+            'respuesta' => 'Se ha modificado la canción',
+            'id' => $song->id
+        ], 200);
     }
 
     /**
