@@ -6,6 +6,8 @@ use App\Models\Song;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+use function PHPUnit\Framework\isEmpty;
+
 class SongController extends Controller
 {
     /**
@@ -61,6 +63,7 @@ class SongController extends Controller
                 'duracion.required' => 'Debe ingresar una duracion',
                 'id_genero.required',
                 'id_pais.required',
+                'id_album.required',
                 'restriccion_edad.required',
                 'fecha_creacion.required'
             ]
@@ -157,16 +160,18 @@ class SongController extends Controller
                 'respuesta' => 'No se encuentran canciones',
             ]);
         }
-
         $song->titulo = $request->titulo;
-
-
+        $song->duracion = $request->duracion;
+        $song->id_genero = $request->id_genero;
+        $song->id_pais = $request->id_pais;
+        $song->id_album = $request->id_album;
+        $song->restriccion_edad = $request->restriccion_edad;
+        $song->fecha_creacion = $request->fecha_creacion;        
         $song->save();
-        
         return response()->json([
             'respuesta' => 'Se ha modificado la canción',
             'id' => $song->id
-        ], 200);
+        ],200);
     }
 
     /**
