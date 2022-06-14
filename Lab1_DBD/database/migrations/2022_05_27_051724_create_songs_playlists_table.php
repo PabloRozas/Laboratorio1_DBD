@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('playlist_cancion', function (Blueprint $table) {
+        Schema::create('song_playlists', function (Blueprint $table) {
             $table->id();
             $table->integer('id_cancion');
             $table->integer('id_playlist');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('playlist_cancion');
+        Schema::dropIfExists('song_playlists');
     }
 };

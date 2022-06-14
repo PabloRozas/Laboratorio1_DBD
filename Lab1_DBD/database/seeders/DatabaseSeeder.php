@@ -17,6 +17,9 @@ use App\Models\Method;
 use App\Models\Functionality;
 use App\Models\Card_Type;
 use App\Models\Bank;
+use App\Models\FunctionalityRole;
+use App\Models\SongPlaylist;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,6 +32,7 @@ class DatabaseSeeder extends Seeder
         {
                 // \App\Models\User::factory(10)->create();
                 // 1ro - Modelos sin llaves Foraneas (sin FK)
+
                 Role::factory(10)->create();
                 Functionality::factory(10)->create();
                 Genre::factory(10)->create();
@@ -43,6 +47,9 @@ class DatabaseSeeder extends Seeder
                 Rating::factory(10)->create();
                 Authentication::factory(10)->create();
                 Playlist::factory(10)->create();
+                FunctionalityRole::factory(10)->create();
+                SongPlaylist::factory(10)->create();
+
 
 
 
