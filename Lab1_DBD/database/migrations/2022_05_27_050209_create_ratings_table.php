@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('id_cancion');
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_cancion')->references('id')->on('songs');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

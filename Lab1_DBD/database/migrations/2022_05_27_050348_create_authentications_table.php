@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('fecha_creacion')->nullable();
             $table->integer('id_usuario');
             $table->foreign('id_usuario')->references('id')->on('users');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

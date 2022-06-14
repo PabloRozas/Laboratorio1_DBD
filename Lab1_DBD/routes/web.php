@@ -14,6 +14,7 @@ use App\Http\Controllers\SongController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\MethodController;
+use App\Http\Controllers\FunctionalityRoleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -105,3 +106,15 @@ Route::get('/methods/{id}', [MethodController::class, 'show']);
 Route::post('/methods/create', [MethodController::class, 'store']);
 Route::post('/methods/update/{id}', [MethodController::class, 'update']);
 Route::delete('/methods/destroy/{id}', [MethodController::class, 'destroy']);
+// Functionality - roles
+Route::get('/functionalityrole', [FunctionalityRoleController::class, 'index']);
+Route::get('/functionalityrole/{id}', [FunctionalityRoleController::class, 'show']);
+Route::post('/functionalityrole/create', [FunctionalityRoleController::class, 'store']);
+Route::put('/functionalityrole/update/{id}', [FunctionalityRoleController::class, 'update']);
+Route::delete('/functionalityrole/delete/{id}', [FunctionalityRoleController::class, 'destroy']);
+// Song - Playlist
+Route::get('/songplaylist', [SongPlaylistController::class, 'index']);
+Route::get('/songplaylist/{id}', [SongPlaylistController::class, 'show']);
+Route::post('/songplaylist/create', [SongPlaylistController::class, 'store']);
+Route::put('/songplaylist/update/{id}', [SongPlaylistController::class, 'update']);
+Route::delete('/songplaylist/delete/{id}', [SongPlaylistController::class, 'destroy']);
