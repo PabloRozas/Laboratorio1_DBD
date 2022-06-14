@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\Card_TypeController;
 use App\Http\Controllers\FuncionalityController;
@@ -39,13 +40,18 @@ Route::post('/banks/create', [BankController::class, 'store']);
 Route::get('/banks/{id}', [BankController::class, 'show']);
 Route::put('/banks/update/{id}', [BankController::class, 'update']);
 Route::delete('/banks/delete/{id}', [BankController::class, 'destroy']);
+//PLAYLIST
+Route::get('/playlist',[PlaylistController::class, 'index']);
+Route::post('/playlist/create', [PlaylistController::class, 'store']);
+Route::put('/playlist/update/{id}', [PlaylistController::class, 'update']);
+Route::delete('/playlist/delete/{id}', [PlaylistController::class, 'destroy']);
 //FUNCIONALITY
 Route::get('/funcionalities', [FuncionalityController::class, 'index']);
 //CARD TYPES
 Route::get('/card_types', [Card_TypeController::class, 'index']);
 Route::get('/card_types/{id}', [Card_TypeController::class, 'show']);
 Route::post('/card_types/create', [Card_TypeController::class, 'store']);
-Route::get('/card_types/update/{id}', [Card_TypeController::class, 'update']);
+Route::put('/card_types/update/{id}', [Card_TypeController::class, 'update']);
 Route::get('/card_types/destroy/{id}', [Card_TypeController::class, 'destroy']);
 //ALBUMS
 Route::get('/albums', [AlbumController::class, 'index']);

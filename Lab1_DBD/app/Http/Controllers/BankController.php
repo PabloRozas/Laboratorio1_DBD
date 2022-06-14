@@ -146,7 +146,8 @@ class BankController extends Controller
         {
             return response()->json([]);
         }
-        $bank->delete();
+
+        $bank->truncate();
 
         return response()->json([
             'respuesta' => 'Se ha borrado un nuevo banco',
