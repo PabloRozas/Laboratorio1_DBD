@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('id_playlist');
             $table->foreign('id_cancion')->references('id')->on('songs');
             $table->foreign('id_playlist')->references('id')->on('playlists');
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }
