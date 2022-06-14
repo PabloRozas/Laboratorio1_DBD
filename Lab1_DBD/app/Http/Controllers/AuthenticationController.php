@@ -6,6 +6,8 @@ use App\Models\Authentication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+use function PHPUnit\Framework\isEmpty;
+
 class AuthenticationController extends Controller
 {
     /**
@@ -149,6 +151,33 @@ class AuthenticationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $authentication = Authentication::find($id);
+        if (empty($authentication)) {
+            return response()->json([
+                'respuesta' => 'No se encuentra autenticación.',
+            ]);
+        }
+        
+        $authentication->delete();
+        return response()->json([
+            'respuesta' => 'Se ha desactivado la autenticación.',
+            'id' => $authentication->id,
+            'titulo' => $authentication->titulo
+        ], 200);
+    }
+
+    public function restore($id)
+    {
+        $authentication = Authentication::onlyTrashed()->find($id);
+        if (empty($authentication)) {
+            return response()->json([
+                'La autenticación no ha sido desactivado con anterioridad.'
+            ]);
+        }
+        $authentication->restore();
+        return response()->json([
+            'respuesta' => 'Se ha activado la autenticación.',
+            'id' => $authentication->id,
+        ], 200);
     }
 }

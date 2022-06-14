@@ -6,6 +6,8 @@ use App\Models\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+use function PHPUnit\Framework\isEmpty;
+
 class RatingController extends Controller
 {
     /**
@@ -160,6 +162,32 @@ class RatingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rating = Rating::find($id);
+        if (empty($rating)) {
+            return response()->json([
+                'respuesta' => 'No se encuentra calificación.',
+            ]);
+        }
+        
+        $rating->delete();
+        return response()->json([
+            'respuesta' => 'Se ha desactivado la calificación:',
+            'id' => $rating->id,
+        ], 200);
+    }
+
+    public function restore($id)
+    {
+        $rating = Rating::onlyTrashed()->find($id);
+        if (empty($rating)) {
+            return response()->json([
+                'La calificación no ha sido desactivado con anterioridad.'
+            ]);
+        }
+        $rating->restore();
+        return response()->json([
+            'respuesta' => 'Se ha activado la calificación.',
+            'id' => $rating->id,
+        ], 200);
     }
 }
