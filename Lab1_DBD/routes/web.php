@@ -27,7 +27,7 @@ use App\Http\Controllers\FunctionalityRoleController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
 });
 //GENRES
 Route::get('/genres', [GenreController::class, 'index']);
@@ -42,7 +42,7 @@ Route::get('/banks/{id}', [BankController::class, 'show']);
 Route::put('/banks/update/{id}', [BankController::class, 'update']);
 Route::delete('/banks/delete/{id}', [BankController::class, 'destroy']);
 //PLAYLIST
-Route::get('/playlist',[PlaylistController::class, 'index']);
+Route::get('/playlist', [PlaylistController::class, 'index']);
 Route::post('/playlist/create', [PlaylistController::class, 'store']);
 Route::put('/playlist/update/{id}', [PlaylistController::class, 'update']);
 Route::delete('/playlist/delete/{id}', [PlaylistController::class, 'destroy']);
@@ -118,3 +118,7 @@ Route::get('/songplaylist/{id}', [SongPlaylistController::class, 'show']);
 Route::post('/songplaylist/create', [SongPlaylistController::class, 'store']);
 Route::put('/songplaylist/update/{id}', [SongPlaylistController::class, 'update']);
 Route::delete('/songplaylist/delete/{id}', [SongPlaylistController::class, 'destroy']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
