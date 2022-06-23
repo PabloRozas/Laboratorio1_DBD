@@ -164,4 +164,17 @@ class PlaylistController extends Controller
             'Nombre' => $playlist->Nombre,
         ],200);
     }
+    public function restore($id)    //Funciona Correctamente
+    {
+        $playlist = Playlist::onlyTrashed()->find($id);
+        if (empty($playlist)) {
+            return response()->json(['El usuario no ha sido desactivado con anterioridad.']);
+        }
+        $playlist->restore();
+        return response()->json([
+            'respuesta' => 'Se ha activado el usuario.',
+            'id' => $playlist->id,
+            'Nombre' => $playlist->username,
+        ], 200);
+    }
 }
