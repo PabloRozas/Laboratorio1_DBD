@@ -18,7 +18,7 @@ class AuthenticationFactory extends Factory
     public function definition()
     {
         return [
-            'contrasena' => $this->faker->words(3, true),
+            'password' => $this->faker->words(3, true),
             //'$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'fecha_creacion' => $this->faker->date(),
             'id_usuario' => User::all()->random()->id,

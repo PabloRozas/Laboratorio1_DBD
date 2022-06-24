@@ -40,7 +40,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Album');
 
     }
-    
+
 
     /**
      * The attributes that are mass assignable.
@@ -50,7 +50,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        //    'password',
+        'password',
+        'username',
+        'fecha_nacimiento',
+        'suscripcion',
     ];
 
     /**

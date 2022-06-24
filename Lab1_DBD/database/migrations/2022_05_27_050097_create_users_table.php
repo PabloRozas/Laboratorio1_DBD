@@ -17,12 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('username');
             $table->string('name');
+            $table->string('password');
             $table->string('email')->unique();
-            $table->date('fecha_nacimiento');
+            $table->date('fecha_nacimiento')->nullable();
             $table->integer('edad')->nullable();
             $table->timestamp('fecha_creacion')->nullable();
             $table->boolean('suscripcion');
-            $table->integer('id_rol');
+            $table->integer('id_rol')->nullable();
             $table->foreign('id_rol')->references('id')->on('roles');
             $table->integer('num_tarjeta')->nullable();
             $table->foreign('num_tarjeta')->references('id')->on('methods');

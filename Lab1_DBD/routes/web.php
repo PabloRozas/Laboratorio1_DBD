@@ -16,6 +16,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\MethodController;
 use App\Http\Controllers\FunctionalityRoleController;
+use App\Http\Controllers\SongPlaylistController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

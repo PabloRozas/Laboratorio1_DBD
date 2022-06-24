@@ -25,6 +25,7 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'username' => $this->faker->userName(),
+            'password' => $this->faker->password(),
             'email' => $this->faker->unique()->safeEmail(),
             'fecha_creacion' => now(),
             'fecha_nacimiento' => $this->faker->date(),
@@ -34,7 +35,7 @@ class UserFactory extends Factory
             'num_tarjeta' => Method::all()->random()->id,
             'remember_token' => Str::random(10),
             //'id_playlists' => Playlist::all()->random()->id,
-            
+
         ];
     }
 
