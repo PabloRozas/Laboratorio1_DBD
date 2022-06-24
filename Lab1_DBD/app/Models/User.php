@@ -12,10 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    public function Autenticacion()
-    {
-        return $this->hasOne('App\Authentication');
-    }
     public function Role()
     {
         return $this->belongsTo('App\Role');

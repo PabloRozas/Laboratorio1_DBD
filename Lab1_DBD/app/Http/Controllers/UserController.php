@@ -133,26 +133,26 @@ class UserController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                //'name'=>'required|min:4|max:30|unique:users,name',
+                'name'=>'required|max:30',
                 'username' => 'required|min:4|max:100|unique:users,username',
                 'email'=>'required|max:30|unique:users,email',
-                //'fecha_nacimiento'=>'required',
+                'fecha_nacimiento'=>'required',
                 'id_rol' => 'required',
+                'password' => 'required',
                 'suscripcion' => 'required'
             ],
             [
-                //'name.required'=>'Debes ingresar un nombre',
-                //'name.min'=>'El nombre debe ser de largo mínimo :min',
-                //'name.max'=>'El nombre debe ser de largo máximo :max',
+                'name.required'=>'Debes ingresar un nombre',
                 'username.unique' => 'El nombre de usuario ya existe',
                 'username.min' => 'El nickname debe ser de largo mínimo :min',
                 'username.max' => 'El nickname debe ser de largo máximo :max',
                 'username.required' => 'Debe ingresar un nickname de usuario',
                 'email.required'=>'Debe ingresar un correo electronico',
                 'email.unique'=>'El correo electronico ya existe',
-                //'fecha_nacimiento.required'=>'Debe ingresar una fecha de nacimiento',
+                'fecha_nacimiento.required'=>'Debe ingresar una fecha de nacimiento',
                 'id_rol.required' => 'Debes seleccionar un rol',
-                'suscripcion' => 'Ingresa una suscripcion'
+                'suscripcion' => 'Ingresa una suscripcion',
+                'password' => 'Porfavor ingrese la contraseña'
             ]
         );
         if ($validator->fails()) {
@@ -165,7 +165,8 @@ class UserController extends Controller
         //$subject->name = $request->name;
         $user->username = $request->username;
         $user->email =$request->email;
-        //$subject->fecha_nacimiento = $request->fecha_nacimiento;
+        $user->fecha_nacimiento = $request->fecha_nacimiento;
+        $user->password = $request->password;
         $user->id_rol = $request->id_rol;
         $user->suscripcion = $request->suscripcion;
 
@@ -188,7 +189,7 @@ class UserController extends Controller
         if (empty($user)) {
             return response()->json([]);
         }
-        $user->delete();         
+        $user->delete();
         return response()->json([
             'respuesta' => 'Se ha desactivado el usuario.',
             'id' => $user->id,
