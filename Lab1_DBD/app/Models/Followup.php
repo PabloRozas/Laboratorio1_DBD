@@ -13,12 +13,12 @@ class Followup extends Model
     //funcion relacion con la tabla users
     public function user1()
     {
-        return $this->hasMany('App\Models\User', 'id_usuario1');
+        return $this->belongsTo('App\Models\User', 'id_usuario1');
     }
     //funcion relacion con la tabla users  
     public function user2()
     {
-        return $this->hasMany('App\Models\User', 'id_usuario2');
+        return $this->belongsTo('App\Models\User', 'id_usuario2');
     }
 
 }

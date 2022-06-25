@@ -39,7 +39,7 @@ class User extends Authenticatable
     //Funcion relación con la tabla followups
     public function Followups()
     {
-        return $this->belongsTo('App\Followup');
+        return $this->hasMany('App\Followup');
     }
 
 
