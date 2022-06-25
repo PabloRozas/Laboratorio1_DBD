@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nombre_album');
             $table->time('duracion')->nullable();
             $table->integer('id_user')->nullable();
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -147,10 +147,25 @@ class BankController extends Controller
             return response()->json([]);
         }
 
-        $bank->truncate();
+        $bank->delete();
 
         return response()->json([
             'respuesta' => 'Se ha borrado un nuevo banco',
+            'id' => $bank->id
+        ],200);
+    }
+
+    public function restore($id)
+    {
+        //
+        $bank = Bank::onlyTrashed()->find($id);
+        if(empty($bank))
+        {
+            return response()->json([]);
+        }
+        $bank->restore();
+        return response()->json([
+            'respuesta' => 'Se ha restaurado un nuevo banco',
             'id' => $bank->id
         ],200);
     }

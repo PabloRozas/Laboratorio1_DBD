@@ -19,9 +19,10 @@ return new class extends Migration
             $table->integer('num_puntaje');
             $table->integer('id_user');
             $table->integer('id_cancion');
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_cancion')->references('id')->on('songs');
             $table->softDeletes();
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_cancion')->references('id')->on('songs')->onDelete('cascade')->onUpdate('cascade');
+            
             $table->timestamps();
         });
     }

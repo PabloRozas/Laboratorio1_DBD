@@ -25,9 +25,9 @@ return new class extends Migration
             $table->integer('id_genero')->nullable();
             $table->integer('id_pais')->nullable();
             $table->integer('id_album')->nullable();
-            $table->foreign('id_genero')->references('id')->on('genres');
-            $table->foreign('id_pais')->references('id')->on('locations');
-            $table->foreign('id_album')->references('id')->on('albums');
+            $table->foreign('id_genero')->references('id')->on('genres')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_pais')->references('id')->on('locations')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_album')->references('id')->on('albums')->onDelete('cascade')->onUpdate('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
