@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('id_functionalities');
             $table->integer('id_roles');
-            $table->foreign('id_functionalities')->references('id')->on('functionalities');
-            $table->foreign('id_roles')->references('id')->on('roles');
+            $table->foreign('id_functionalities')->references('id')->on('functionalities')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_roles')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
 
             $table->softDeletes();
             $table->timestamps();

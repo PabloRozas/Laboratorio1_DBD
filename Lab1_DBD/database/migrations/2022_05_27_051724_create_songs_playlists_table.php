@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('id_cancion');
             $table->integer('id_playlist');
-            $table->foreign('id_cancion')->references('id')->on('songs');
-            $table->foreign('id_playlist')->references('id')->on('playlists');
+            $table->foreign('id_cancion')->references('id')->on('songs')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_playlist')->references('id')->on('playlists')->onDelete('cascade')->onUpdate('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

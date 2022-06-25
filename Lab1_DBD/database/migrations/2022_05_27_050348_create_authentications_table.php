@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->date('fecha_creacion')->nullable();
             $table->integer('id_usuario');
-            $table->foreign('id_usuario')->references('id')->on('users');
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('functionalities', function (Blueprint $table) {
             $table->id();
             $table->string("nombre_fun", 20);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

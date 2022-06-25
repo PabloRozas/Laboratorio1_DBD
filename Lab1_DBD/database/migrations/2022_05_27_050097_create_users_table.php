@@ -24,9 +24,9 @@ return new class extends Migration
             $table->timestamp('fecha_creacion')->nullable();
             $table->boolean('suscripcion');
             $table->integer('id_rol')->nullable();
-            $table->foreign('id_rol')->references('id')->on('roles');
+            $table->foreign('id_rol')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('num_tarjeta')->nullable();
-            $table->foreign('num_tarjeta')->references('id')->on('methods');
+            $table->foreign('num_tarjeta')->references('id')->on('methods')->onDelete('cascade')->onUpdate('cascade');
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

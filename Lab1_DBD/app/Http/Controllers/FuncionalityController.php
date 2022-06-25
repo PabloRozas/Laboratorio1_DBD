@@ -55,6 +55,13 @@ class FuncionalityController extends Controller
     public function show($id)
     {
         //
+        $functionality = Functionality::find($id);
+        if (!$functionality){
+            return response()->json([
+                'respuesta' => 'No se encuentra la funcionalidad',
+            ]);
+        }
+        return response($functionality,200);
     }
 
     /**
@@ -78,6 +85,7 @@ class FuncionalityController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**
@@ -89,5 +97,15 @@ class FuncionalityController extends Controller
     public function destroy($id)
     {
         //
+        $functionality = Functionality::find($id);
+        if ($functionality == null){
+            return response()->json([
+                'respuesta' => 'No se encuentra la funcionalidad',
+            ]);
+        }
+        $functionality->delete();
+        return response()->json([
+            'respuesta' => 'Funcionalidad eliminada',
+        ]);
     }
 }
