@@ -54,7 +54,8 @@ class SongController extends Controller
                 'id_pais' => 'required',
                 'id_album' => 'required',
                 'restriccion_edad' => 'required',
-                'fecha_creacion' => 'required'
+                'fecha_creacion' => 'required',
+                'url.cancion' => 'required'
             ],
             [
                 'titulo.required' => 'Debes ingresar un título.',
@@ -65,7 +66,8 @@ class SongController extends Controller
                 'id_pais.required',
                 'id_album.required',
                 'restriccion_edad.required',
-                'fecha_creacion.required'
+                'fecha_creacion.required',
+                'url_cancion.required'
             ]
         );
         if ($validator->fails()) {
@@ -79,6 +81,7 @@ class SongController extends Controller
         $newSong->id_album = $request->id_album;
         $newSong->restriccion_edad = $request->restriccion_edad;
         $newSong->fecha_creacion = $request->fecha_creacion;
+        $newSong->url_cancion = $request->url_cancion;
         $newSong->save();
         return response()->json([
             'respuesta' => 'Se ha creado una nueva canción',
@@ -134,7 +137,8 @@ class SongController extends Controller
                 'id_pais' => 'required',
                 'id_album' => 'required',
                 'fecha_creacion' => 'required',
-                'restriccion_edad' => 'required'
+                'restriccion_edad' => 'required',
+                'url.cancion' => 'required'
 
             ],
             [
@@ -145,7 +149,8 @@ class SongController extends Controller
                 'id_genero.required' => 'Debe ingresar id del género.',
                 'id_pais.required' => 'Debe ingresar id del país.',
                 'fecha_creacion.required' => 'Debe ingresar fecha de creación.',
-                'restriccion_edad.required' => 'Debe indicar si tiene restriccion de edad o no.'
+                'restriccion_edad.required' => 'Debe indicar si tiene restriccion de edad o no.',
+                'url_cancion.required' => 'Debe ingresar la url de la canción.'
             ]
         );
 
@@ -153,7 +158,7 @@ class SongController extends Controller
             return response($validator->errors());
         }
 
-        $song = Song::find($id);  
+        $song = Song::find($id);
 
         if (empty($song)){
             return response()->json([
@@ -167,6 +172,7 @@ class SongController extends Controller
         $song->id_album = $request->id_album;
         $song->fecha_creacion = $request->fecha_creacion;
         $song->restriccion_edad = $request->restriccion_edad;
+        $song->url_cancion = $request->url_cancion;
 
         $song->save();
 
@@ -191,7 +197,7 @@ class SongController extends Controller
                 'respuesta' => 'No se encuentra canción.',
             ]);
         }
-        
+
         $song->delete();
         return response()->json([
             'respuesta' => 'Se ha desactivado la canción:',

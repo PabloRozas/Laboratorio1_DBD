@@ -9,7 +9,6 @@ use App\Models\Song;
 use App\Models\Location;
 use App\Models\Genre;
 use App\Models\User;
-use App\Models\Authentication;
 use App\Models\Role;
 use App\Models\Rating;
 use App\Models\Playlist;
@@ -45,7 +44,6 @@ class DatabaseSeeder extends Seeder
                 Album::factory(10)->create();
                 Song::factory(10)->create();
                 Rating::factory(10)->create();
-                Authentication::factory(10)->create();
                 Playlist::factory(10)->create();
                 FunctionalityRole::factory(10)->create();
                 SongPlaylist::factory(10)->create();
