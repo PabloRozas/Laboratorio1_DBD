@@ -43,7 +43,29 @@ class FuncionalityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //funcion que agrega un dato que se recibe
+        $validator = Validator::make(
+            $request->all(),[
+                'nombre_fun' => 'required|min:2|max:30'
+            ],
+            [
+                'nombre_fun.required' => 'Debes ingresar un nombre',
+                'nombre_fun.min' => 'El nombre debe tener un largo min de 2 caracteres',
+                'nombre_fun.max' => 'El nombre excede el máximo de caracteres',
+            ]
+            );
+        if ($validator->fails()){
+            return response($validator->errors());
+        }
+        $functionality = new Functionality();
+        $functionality->nombre_fun = $request->nombre_fun;
+        $functionality->save();
+
+
+        return response()->json([
+            'respuesta' => 'Funcionalidad agregada correctamente',
+            'id' => $functionality->id
+        ]);
     }
 
     /**
@@ -84,7 +106,32 @@ class FuncionalityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //funcion que actualiza un dato que se recibe
+        $validator = Validator::make(
+            $request->all(),[
+                'nombre_fun' => 'required|min:2|max:30'
+            ],
+            [
+                'nombre_fun.required' => 'Debes ingresar un nombre',
+                'nombre_fun.min' => 'El nombre debe tener un largo min de 2 caracteres',
+                'nombre_fun.max' => 'El nombre excede el máximo de caracteres',
+            ]
+            );
+        if ($validator->fails()){
+            return response($validator->errors());
+        }
+        $functionality = Functionality::find($id);
+        if (empty($functionality)){
+            return response()->json([
+                'respuesta' => 'No se encuentra la funcionalidad',
+            ]);
+        }
+        $functionality->nombre_fun = $request->nombre_fun;
+        $functionality->save();
+        return response()->json([
+            'respuesta' => 'Funcionalidad actualizada correctamente',
+            'id' => $functionality->id
+        ]);
 
     }
 
@@ -106,6 +153,22 @@ class FuncionalityController extends Controller
         $functionality->delete();
         return response()->json([
             'respuesta' => 'Funcionalidad eliminada',
+        ]);
+    }
+
+    //funcion que restaura un dato que se recibe
+    public function restore($id)
+    {
+        $functionality = Functionality::withTrashed()->find($id);
+        if ($functionality == null){
+            return response()->json([
+                'respuesta' => 'No se encuentra la funcionalidad',
+            ]);
+        }
+        $functionality->restore();
+        return response()->json([
+            'respuesta' => 'Funcionalidad restaurada',
+            'id' => $functionality->id
         ]);
     }
 }

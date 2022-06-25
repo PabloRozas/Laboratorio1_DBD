@@ -18,4 +18,9 @@ class Method extends Model
     {
         return $this->belongsTo('App\Card_Type');
     }
+    //funcion de relacion con la tabla users
+    public function User()
+    {
+        return $this->hasMany('App\User');
+    }
 }

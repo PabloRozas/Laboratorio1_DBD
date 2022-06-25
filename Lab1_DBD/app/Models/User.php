@@ -19,7 +19,7 @@ class User extends Authenticatable
 
     public function Method()
     {
-        return $this->hasMany('App\Method');
+        return $this->belongsTo('App\Method');
     }
     public function Rating()
     {
