@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('restriccion_edad')->nullable();
             $table->integer('reproducciones')->nullable();
             $table->date('fecha_creacion');
+            $table->string('url_cancion');
             $table->integer('id_genero')->nullable();
             $table->integer('id_pais')->nullable();
             $table->integer('id_album')->nullable();

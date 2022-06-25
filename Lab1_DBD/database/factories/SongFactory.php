@@ -27,6 +27,7 @@ class SongFactory extends Factory
             'restriccion_edad' => $this->faker->boolean(),
             'reproducciones' => $this->faker->randomNumber(1, 10000),
             'fecha_creacion' => $this->faker->date(),
+            'url_cancion' => $this->faker->url(),
             'id_genero' => Genre::all()->random()->id,
             'id_album' => Album::all()->random()->id,
             'id_pais' => Location::all()->random()->id,
