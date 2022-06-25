@@ -7,6 +7,7 @@ use Dotenv\Repository\RepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+
 class PlaylistController extends Controller
 {
     /**
@@ -168,11 +169,11 @@ class PlaylistController extends Controller
     {
         $playlist = Playlist::onlyTrashed()->find($id);
         if (empty($playlist)) {
-            return response()->json(['El usuario no ha sido desactivado con anterioridad.']);
+            return response()->json(['La Playlist no ha sido desactivada con anterioridad.']);
         }
         $playlist->restore();
         return response()->json([
-            'respuesta' => 'Se ha activado el usuario.',
+            'respuesta' => 'Se ha activado la playlist.',
             'id' => $playlist->id,
             'Nombre' => $playlist->username,
         ], 200);
