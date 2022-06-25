@@ -11,8 +11,9 @@ class Functionality extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function Role()
+    //Funcion de relacion con la tabla roles_functionalities
+    public function roles_functionalities()
     {
-        return $this->belongsToMany('App\Role');
+        return $this->hasMany('App\Models\Roles_Functionalities');
     }
 }
