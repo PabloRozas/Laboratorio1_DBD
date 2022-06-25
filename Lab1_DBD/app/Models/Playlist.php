@@ -10,9 +10,13 @@ class Playlist extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    public function Song(){
-        return $this->belongsToMany('App\Song');
+    
+    //Funcion de relacion con la tabla playlist_songs
+    public function playlist_songs()
+    {
+        return $this->hasMany('App\Models\Playlist_Songs');
     }
+
     public function User(){
         return $this->belongsTo('App\User');
     }

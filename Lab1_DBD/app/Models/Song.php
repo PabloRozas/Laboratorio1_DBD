@@ -25,10 +25,12 @@ class Song extends Model
         return $this->belongsTo('App\Album');
     }
 
-    public function Playlists()
+    //funcion de realcion con la tabla playlist_songs
+    public function playlist_songs()
     {
-        return $this->belongsToMany('App\Playlist');
+        return $this->hasMany('App\Models\Playlist_Songs');
     }
+
     public function Rating()
     {
         return $this->hasMany('App\Rating');
