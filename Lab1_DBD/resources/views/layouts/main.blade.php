@@ -9,11 +9,11 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>DEBEDE</title>
       <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
+      <script src="{{ asset('js/app.js') }}" defer></script>
   </head>
 
   <body>
           @yield('content')
-      <script src="{{ asset('js/app.js') }}" type="text/js"></script>
   </body>
 
   </html>
