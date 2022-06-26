@@ -31,6 +31,10 @@ use App\Http\Controllers\SongPlaylistController;
 Route::get('/', function () {
     return view('inicio');
 });
+
+Route::get('/escucha', function () {
+    return view('escucha');
+});
 //GENRES
 Route::get('/genres', [GenreController::class, 'index']);
 Route::get('/genres/{id}', [GenreController::class, 'show']);

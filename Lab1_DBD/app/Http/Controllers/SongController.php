@@ -23,7 +23,7 @@ class SongController extends Controller
                 'respuesta' => 'No se encuentran canciones',
             ]);
         }
-        return response($songs, 200);
+        return view('escucha' , compact('songs'));
     }
 
     /**
