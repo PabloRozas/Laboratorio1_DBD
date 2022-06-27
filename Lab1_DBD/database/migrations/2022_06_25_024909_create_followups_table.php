@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('followups', function (Blueprint $table) {
             $table->id();
-            $table->biginteger('id_usuario1')->nullable;
+            $table->integer('id_usuario1')->nullable;
             $table->foreign('id_usuario1')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->biginteger('id_usuario2')->nullable;
+            $table->integer('id_usuario2')->nullable;
             $table->foreign('id_usuario2')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->softDeletes();
             $table->timestamps();
