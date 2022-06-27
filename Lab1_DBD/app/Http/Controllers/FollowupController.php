@@ -48,10 +48,12 @@ class FollowupController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'id_user' => 'required',
+                'id_usuario1' => 'required',
+                'id_usuario2' => 'required',
             ],
             [
-                'id_user.required' => 'Debe ingresar un usuario'
+                'id_usuario1.required' => 'Debe ingresar un usuario',
+                'id_usuario2.required' => 'Debe ingresar un usuario'
             ]
         );
         if ($validator->fails()) {
@@ -61,7 +63,8 @@ class FollowupController extends Controller
             ]);
         }
         $followup = new Followup();
-        $followup->id_user = $request->id_user;
+        $followup->id_usuario1 = $request->id_usuario1;
+        $followup->id_usuario2 = $request->id_usuario2;
         $followup->save();
         return response()->json([
             'respuesta' => 'Se ha realizado un follow',
@@ -109,12 +112,14 @@ class FollowupController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'id_user' => 'required'
+                'id_usuario1' => 'required',
+                'id_usuario2' => 'required',
             ],
             [
-                'id_user.required' => 'Debe ingresar un usuario'
+                'id_usuario1.required' => 'Debe ingresar un usuario',
+                'id_usuario.required' => 'Debe ingresar un usuario'
             ]
-            );
+        );
         if ($validator->fails()){
             return response($validator->errors());
         }
