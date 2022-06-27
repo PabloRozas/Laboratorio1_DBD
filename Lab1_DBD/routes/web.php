@@ -17,6 +17,8 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\MethodController;
 use App\Http\Controllers\FunctionalityRoleController;
 use App\Http\Controllers\SongPlaylistController;
+use App\Http\Controllers\FollowupController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -124,6 +126,13 @@ Route::get('/songplaylist/{id}', [SongPlaylistController::class, 'show']);
 Route::post('/songplaylist/create', [SongPlaylistController::class, 'store']);
 Route::put('/songplaylist/update/{id}', [SongPlaylistController::class, 'update']);
 Route::delete('/songplaylist/delete/{id}', [SongPlaylistController::class, 'destroy']);
+//FOLLOWUP
+Route::get('/followups', [FollowupController::class, 'index']);
+Route::get('/followups/{id}', [FollowupController::class, 'show']);
+Route::post('/followups/create', [FollowupController::class, 'store']);
+Route::put('/followups/update/{id}', [FollowupController::class, 'update']);
+Route::delete('/followups/destroy/{id}', [FollowupController::class, 'destroy']);
+
 
 Auth::routes();
 
