@@ -18,6 +18,7 @@ use App\Models\Card_Type;
 use App\Models\Bank;
 use App\Models\FunctionalityRole;
 use App\Models\SongPlaylist;
+use App\Models\Followup;
 
 
 class DatabaseSeeder extends Seeder
@@ -47,7 +48,7 @@ class DatabaseSeeder extends Seeder
                 Playlist::factory(10)->create();
                 FunctionalityRole::factory(10)->create();
                 SongPlaylist::factory(10)->create();
-
+                Followup::factory(10)->create();
 
 
 

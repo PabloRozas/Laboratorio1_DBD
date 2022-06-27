@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use app\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,10 +18,8 @@ class FollowupFactory extends Factory
     public function definition()
     {
         return [
-            'id_usuario1' => $this->faker->numberBetween($min = 1, $max = 10),
-            'id_usuario2' => $this->faker->numberBetween($min = 1, $max = 10),
-            'soft_deletes' => $this->faker->boolean(),
-            'timestamps' => $this->faker->dateTime(),
+            'id_usuario1' => User::all()->random()->id,
+            'id_usuario2' => User::all()->random()->id,
         ];
     }
 }
