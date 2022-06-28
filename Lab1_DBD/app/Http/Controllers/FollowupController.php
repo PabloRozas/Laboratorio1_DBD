@@ -128,7 +128,8 @@ class FollowupController extends Controller
         {
             return response()->json([]);
         }
-        $followup->id_user = $request->id_user;
+        $followup->id_usuario1 = $request->id_usuario1;
+        $followup->id_usuario2 = $request->id_usuario2;
         $followup->save();
         return response()->json([
             'respuesta' => 'Se ha modificado el Follow.',

@@ -43,31 +43,42 @@ Route::get('/genres/{id}', [GenreController::class, 'show']);
 Route::post('/genres/create', [GenreController::class, 'store']);
 Route::put('/genres/update/{id}', [GenreController::class, 'update']);
 Route::delete('/genres/delete/{id}', [GenreController::class, 'destroy']);
+Route::get('/genres/restore/{id}', [GenreController::class, 'restore']);
 //BANKS
 Route::get('/banks', [BankController::class, 'index']);
 Route::post('/banks/create', [BankController::class, 'store']);
 Route::get('/banks/{id}', [BankController::class, 'show']);
 Route::put('/banks/update/{id}', [BankController::class, 'update']);
 Route::delete('/banks/delete/{id}', [BankController::class, 'destroy']);
+Route::get('/banks/restore/{id}', [BankController::class, 'restore']);
 //PLAYLIST
 Route::get('/playlist', [PlaylistController::class, 'index']);
 Route::post('/playlist/create', [PlaylistController::class, 'store']);
+Route::get('/playlist/{id}', [PlaylistController::class, 'show']);
 Route::put('/playlist/update/{id}', [PlaylistController::class, 'update']);
 Route::delete('/playlist/delete/{id}', [PlaylistController::class, 'destroy']);
+Route::get('/playlist/restore/{id}', [PlaylistController::class, 'restore']);
 //FUNCIONALITY
 Route::get('/funcionalities', [FuncionalityController::class, 'index']);
+Route::post('/funcionalities/create', [FuncionalityController::class, 'store']);
+Route::get('/funcionalities/{id}', [FuncionalityController::class, 'show']);
+Route::put('/funcionalities/update/{id}', [FuncionalityController::class, 'update']);
+Route::delete('/funcionalities/delete/{id}', [FuncionalityController::class, 'destroy']);
+Route::get('/funcionalities/restore/{id}', [FuncionalityController::class, 'restore']);
 //CARD TYPES
 Route::get('/card_types', [Card_TypeController::class, 'index']);
-Route::get('/card_types/{id}', [Card_TypeController::class, 'show']);
 Route::post('/card_types/create', [Card_TypeController::class, 'store']);
+Route::get('/card_types/{id}', [Card_TypeController::class, 'show']);
 Route::put('/card_types/update/{id}', [Card_TypeController::class, 'update']);
 Route::get('/card_types/destroy/{id}', [Card_TypeController::class, 'destroy']);
+Route::get('/card_types/restore/{id}', [Card_TypeController::class, 'restore']);
 //ALBUMS
 Route::get('/albums', [AlbumController::class, 'index']);
 Route::post('/albums/create', [AlbumController::class, 'store']);
 Route::get('/albums/{id}', [AlbumController::class, 'show']);
 Route::put('/albums/update/{id}', [AlbumController::class, 'update']);
 Route::delete('/albums/delete/{id}', [AlbumController::class, 'destroy']);
+Route::get('/albums/restore/{id}', [AlbumController::class, 'restore']);
 //USERS
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
@@ -81,12 +92,14 @@ Route::get('/roles/{id}', [RoleController::class, 'show']);
 Route::post('/roles/create', [RoleController::class, 'store']);
 Route::put('/roles/update/{id}', [RoleController::class, 'update']);
 Route::delete('/roles/destroy/{id}', [RoleController::class, 'destroy']);
+Route::get('/roles/restore/{id}', [RoleController::class, 'restore']);
 //LOCACIONES
 Route::get('/location', [LocationController::class, 'index']);
 Route::get('/location/{id}', [LocationController::class, 'show']);
 Route::post('/location/create', [LocationController::class, 'store']);
 Route::put('/location/update/{id}', [LocationController::class, 'update']);
 Route::delete('/location/destroy/{id}', [LocationController::class, 'destroy']);
+Route::get('/location/restore/{id}', [LocationController::class, 'restore']);
 //CANCIONES
 Route::get('/songs', [SongController::class, 'index']);
 Route::get('/songs/{id}', [SongController::class, 'show']);
@@ -114,25 +127,28 @@ Route::get('/methods/{id}', [MethodController::class, 'show']);
 Route::post('/methods/create', [MethodController::class, 'store']);
 Route::post('/methods/update/{id}', [MethodController::class, 'update']);
 Route::delete('/methods/destroy/{id}', [MethodController::class, 'destroy']);
+Route::get('/methods/restore/{id}', [MethodController::class, 'restore']);
 // Functionality - roles
 Route::get('/functionalityrole', [FunctionalityRoleController::class, 'index']);
 Route::get('/functionalityrole/{id}', [FunctionalityRoleController::class, 'show']);
 Route::post('/functionalityrole/create', [FunctionalityRoleController::class, 'store']);
 Route::put('/functionalityrole/update/{id}', [FunctionalityRoleController::class, 'update']);
 Route::delete('/functionalityrole/delete/{id}', [FunctionalityRoleController::class, 'destroy']);
+Route::get('/functionalityrole/restore/{id}', [FunctionalityRoleController::class, 'restore']);
 // Song - Playlist
 Route::get('/songplaylist', [SongPlaylistController::class, 'index']);
 Route::get('/songplaylist/{id}', [SongPlaylistController::class, 'show']);
 Route::post('/songplaylist/create', [SongPlaylistController::class, 'store']);
 Route::put('/songplaylist/update/{id}', [SongPlaylistController::class, 'update']);
 Route::delete('/songplaylist/delete/{id}', [SongPlaylistController::class, 'destroy']);
+Route::get('/songplaylist/restore/{id}', [SongPlaylistController::class, 'restore']);
 //FOLLOWUP
 Route::get('/followups', [FollowupController::class, 'index']);
 Route::get('/followups/{id}', [FollowupController::class, 'show']);
 Route::post('/followups/create', [FollowupController::class, 'store']);
 Route::put('/followups/update/{id}', [FollowupController::class, 'update']);
 Route::delete('/followups/destroy/{id}', [FollowupController::class, 'destroy']);
-
+Route::get('/followups/restore/{id}', [FollowupController::class, 'restore']);
 
 Auth::routes();
 

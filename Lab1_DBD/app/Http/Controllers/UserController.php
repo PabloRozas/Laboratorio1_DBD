@@ -53,6 +53,7 @@ class UserController extends Controller
                 'name' => 'required|min:4|max:30|unique:users,name',
                 'username' => 'required|min:4|max:100|unique:users,username',
                 'email' => 'required|max:30|unique:users,email',
+                'password' => 'required|min:4|max:30',
                 'fecha_nacimiento' => 'required',
                 'id_rol' => 'required'
             ],
@@ -77,6 +78,7 @@ class UserController extends Controller
         $user->name = $request->name;               //Se pide un usuario que no exista
         $user->username = $request->username;       //Username que no exista
         $user->email = $request->email;             //email con formato email
+        $user->password = $request->password;       //password con formato password        
         $user->fecha_nacimiento = $request->fecha_nacimiento;   //Fecha de nacimiento con formato AAAA/MM/DD
         $user->suscripcion = false;                 //Se inicia con la creacion en falso para suscripcion
         $user->num_tarjeta = null;                  //Al no tener suscripcion no se crea realcion con tabla de pago
