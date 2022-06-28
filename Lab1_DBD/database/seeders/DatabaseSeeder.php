@@ -43,7 +43,22 @@ class DatabaseSeeder extends Seeder
                 Role::create([
                         'nombre_rol' => 'artista',
                 ]);
-                Functionality::factory(10)->create();
+                //Functionality::factory(10)->create();
+                Functionality::create([
+                        'nombre_fun' => 'crear',
+                ]);
+                
+                Functionality::create([
+                        'nombre_fun' => 'editar',
+                ]);
+
+                Functionality::create([
+                        'nombre_fun' => 'eliminar',
+                ]);
+
+                Functionality::create([
+                        'nombre_fun' => 'ver',
+                ]);
                 Genre::factory(10)->create();
                 Location::factory(10)->create();
                 Card_Type::factory(10)->create();
