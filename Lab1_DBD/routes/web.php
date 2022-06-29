@@ -101,19 +101,23 @@ Route::put('/location/update/{id}', [LocationController::class, 'update']);
 Route::delete('/location/destroy/{id}', [LocationController::class, 'destroy']);
 Route::get('/location/restore/{id}', [LocationController::class, 'restore']);
 //CANCIONES
+/*
 Route::get('/songs', [SongController::class, 'index']);
 Route::get('/songs/{id}', [SongController::class, 'show']);
 Route::post('/songs/create', [SongController::class, 'store']);
 Route::put('/songs/update/{id}', [SongController::class, 'update']);
 Route::delete('/songs/destroy/{id}', [SongController::class, 'destroy']);
 Route::get('/songs/restore/{id}', [SongController::class, 'restore']);
+*/
 //AUTENTICACIONES
+/*
 Route::get('/authentications', [AuthenticationController::class, 'index']);
 Route::get('/authentications/{id}', [AuthenticationController::class, 'show']);
 Route::post('/authentications/create', [AuthenticationController::class, 'store']);
 Route::put('/authentications/update/{id}', [AuthenticationController::class, 'update']);
 Route::delete('/authentications/destroy/{id}', [AuthenticationController::class, 'destroy']);
 Route::get('/authentications/restore/{id}', [AuthenticationController::class, 'restore']);
+*/
 //CALIFICACIONES
 Route::get('/ratings', [RatingController::class, 'index']);
 Route::get('/ratings/{id}', [RatingController::class, 'show']);
@@ -150,6 +154,10 @@ Route::put('/followups/update/{id}', [FollowupController::class, 'update']);
 Route::delete('/followups/destroy/{id}', [FollowupController::class, 'destroy']);
 Route::get('/followups/restore/{id}', [FollowupController::class, 'restore']);
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//COMANDO PARA OBTENER TODAS LAS RUTAS.
+Route::resource('songs', SongController::class);
