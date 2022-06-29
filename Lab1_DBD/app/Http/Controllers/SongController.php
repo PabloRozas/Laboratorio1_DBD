@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class SongController extends Controller
 {
@@ -15,6 +16,7 @@ class SongController extends Controller
      */
     public function index()
     {
+        /*
         $songs = Song::all();
         if ($songs->isEmpty()) {
             return response()->json([
@@ -23,7 +25,9 @@ class SongController extends Controller
         }
         return response($songs, 200);
 
-
+        */
+        $songs['songs']=Song::paginate(25);
+        return view('songs.index',$songs);
     }
 
     /**
@@ -84,21 +88,22 @@ class SongController extends Controller
         if($request->hasFile('foto')){
             $newSong['foto']=$request->file('foto')->store('uploads','public');
         }
-
-
         $newSong->save();
-        return response()->json([
-            'respuesta' => 'Se ha creado una nueva canción',
-            'id' => $newSong->id
-        ], 201);
 
+        return redirect('songs')->with('mensaje','Nueva canción agregada.');
+        /*return response()->json([
+            'respuesta' => 'Se ha creado una nueva cancion',
+            'id' => $newSong->id
+        ], 201);*/
+/*
         $id_buscada = $request->id_usuario;
         $boolean = Authentication::find($id_buscada);
         if(not(empty($boolean))){
             return response()->json([
-                'respuesta' => 'No se encuentra autenticación',
+                'respuesta' => 'No se encuentra autenticacion',
             ]);
         }
+        */
     }
 
     /**
@@ -128,7 +133,8 @@ class SongController extends Controller
     public function edit($id)
     {
         //
-        return view('songs.edit');
+        $songs=Song::findOrFail($id);
+        return view('songs.edit', compact('songs'));
     }
 
     /**
@@ -141,6 +147,18 @@ class SongController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $datosSong = request()->except(['_token','_method']);
+        
+        if($request->hasFile('foto')){
+            $songs=Song::findOrFail($id);
+            Storage::delete('public/'.$songs->foto);
+            $datosSong['foto']=$request->file('foto')->store('uploads','public');
+        }
+
+        Song::where('id','=',$id)->update($datosSong);
+        
+        $songs=Song::findOrFail($id);
+        return view('songs.edit', compact('songs'));
     }
 
     /**
@@ -152,5 +170,11 @@ class SongController extends Controller
     public function destroy($id)
     {
         //
+        $song=Song::findOrFail($id);
+        if(Storage::delete('public/'.$song->foto)){
+            Song::destroy($id);    
+        }
+
+        return redirect('songs')->with('mensaje','Canción borrada.');
     }
 }
