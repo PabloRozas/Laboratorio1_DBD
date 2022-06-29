@@ -77,8 +77,9 @@ class BankController extends Controller
     {
         $bank = Bank::find($id);
         if(empty($bank)){
-            return response()->json([]);
-
+            return response()->json([
+                'respuesta' => 'No se encuentra el banco'
+            ]);
         }
         return response($bank);
     }
@@ -161,7 +162,9 @@ class BankController extends Controller
         $bank = Bank::onlyTrashed()->find($id);
         if(empty($bank))
         {
-            return response()->json([]);
+            return response()->json([
+                'El banco no ha sido desactivado con anterioridad.'
+            ]);
         }
         $bank->restore();
         return response()->json([

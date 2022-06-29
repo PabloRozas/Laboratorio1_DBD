@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('songs', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->date('fecha_subida')->nullable();
             $table->time('duracion');
             $table->boolean('restriccion_edad')->nullable();
             $table->integer('reproducciones')->nullable();
@@ -28,6 +27,7 @@ return new class extends Migration
             $table->foreign('id_genero')->references('id')->on('genres')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_pais')->references('id')->on('locations')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_album')->references('id')->on('albums')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('foto')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

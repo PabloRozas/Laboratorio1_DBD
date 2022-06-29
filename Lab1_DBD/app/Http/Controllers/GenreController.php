@@ -75,11 +75,11 @@ class GenreController extends Controller
      */
     public function show($id)
     {
-        $genres = Genre::find($id);
+        $genre = Genre::find($id);
         if (empty($genre)) {
             return response()->json([]);
         }
-        return response($genres, 200);
+        return response($genre, 200);
     }
 
     /**
@@ -117,17 +117,15 @@ class GenreController extends Controller
         if ($validator->fails()) {
             return response($validator->errors());
         }
-        $newGenre = new Genre();
-        $newGenre->nombre_genero = $request->nombre_genero;
-        $newGenre->save();
-        $genres = Genre::find($id);
-        if (empty($genres)) {
+        $genre = Genre::find($id);
+        if (empty($genre)) {
             return response()->json([]);
         }
-        $genres->nombre_genero = $request->nombre_genero;
+        $genre->nombre_genero = $request->nombre_genero;
+        $genre->save();
         return response()->json([
             'respuesta' => 'Se ha modificado un nuevo genero',
-            'id' => $newGenre->id
+            'id' => $genre->id
         ], 200);
     }
 
@@ -139,15 +137,16 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        $genres = Genre::find($id);
-        if (empty($genres)) {
+        $genre = Genre::find($id);
+        if(empty($genre)) 
+        {
             return response()->json([]);
         }
-        $genres->delete();
+        $genre->delete();
         return response()->json([
             'respuesta' => 'Se ha desactivado el genero',
-            'id' => $genres->id,
-            'nombre_genero' => $genres->nombre_genero,
+            'id' => $genre->id,
+            'nombre_genero' => $genre->nombre_genero
         ], 200);
     }
 
@@ -155,7 +154,9 @@ class GenreController extends Controller
     {
         $genres = Genre::onlyTrashed()->find($id);
         if (empty($genres)) {
-            return response()->json([]);
+            return response()->json([
+                'El género no ha sido desactivado con anterioridad.'
+            ]);
         }
         $genres->restore();
         return response()->json([

@@ -80,11 +80,13 @@ class AlbumController extends Controller
      */
     public function show($id)
     {
-        $albums = Album::find($id);
+        $album = Album::find($id);
         if (empty($album)) {
-            return response()->json([]);
+            return response()->json([
+                'respuesta' => 'No se encontro el album',
+            ]);
         }
-        return response($albums, 200);
+        return response($album, 200);
     }
 
     /**
@@ -103,31 +105,29 @@ class AlbumController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'Nombre' => 'required|min:2|max:50',
+                'nombre_album' => 'required|min:2|max:50',
                 'duracion' => 'required',
             ],
             [
-                'Nombre.required' => 'Debe ingresar un nombre',
-                'Nombre.min' => 'El nombre debe tener un largo minimo de 2',
-                'Nombre.max' => 'El nombre debe tener menos de 50',
+                'nombre_album.required' => 'Debe ingresar un nombre',
+                'nombre_album.min' => 'El nombre debe tener un largo minimo de 2',
+                'nombre_album.max' => 'El nombre debe tener menos de 50',
                 'duracion.required' => 'Ingrese duracion de cancion'
             ]
         );
         if ($validator->fails()) {
             return response($validator->errors());
         }
-        $albums = Album::find($id);
-        if (empty($albums)) {
+        $album = Album::find($id);
+        if (empty($album)) {
             return response()->json(['Album no válido.']);
         }
-        $albums->Nombre = $request->Nombre;
-        $albums->id_album = $request->id_album;
-        $albums->duracion = $request->duracion;
-
-        $albums->save();
+        $album->nombre_album = $request->nombre_album;
+        $album->duracion = $request->duracion;
+        $album->save();
         return response()->json([
             'respuesta' => 'Se ha modificado el album',
-            'id' => $albums->id
+            'id' => $album->id
         ], 200);
     }
 

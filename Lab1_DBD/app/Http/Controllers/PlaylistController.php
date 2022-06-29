@@ -23,8 +23,8 @@ class PlaylistController extends Controller
             return response()->json([
                 'respuesta' => 'No se encuentran los Playlist',
             ]);
-            return response($playlist, 200);
         }
+        return response($playlist, 200);
     }
 
     /**
@@ -86,7 +86,13 @@ class PlaylistController extends Controller
      */
     public function show($id)
     {
-        //
+        $playlist = Playlist::find($id);
+        if (!$playlist){
+            return response()->json([
+                'respuesta' => 'No se encuentra la playlist',
+            ]);
+        }
+        return response($playlist,200);
     }
 
     /**
