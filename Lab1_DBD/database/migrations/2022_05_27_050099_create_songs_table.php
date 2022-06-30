@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->time('duracion');
-            $table->boolean('restriccion_edad')->nullable();
-            $table->integer('reproducciones')->nullable();
+            $table->boolean('restriccion_edad');
+            $table->integer('reproducciones');
             $table->date('fecha_creacion');
             $table->string('url_cancion');
             $table->integer('id_genero')->nullable();

@@ -77,11 +77,11 @@ class UserController extends Controller
         $user = new User;
         $user->name = $request->name;               //Se pide un usuario que no exista
         $user->username = $request->username;       //Username que no exista
-        $user->email = $request->email;             //email con formato email
-        $user->password = $request->password;       //password con formato password        
-        $user->fecha_nacimiento = $request->fecha_nacimiento;   //Fecha de nacimiento con formato AAAA/MM/DD
-        $user->suscripcion = false;                 //Se inicia con la creacion en falso para suscripcion
-        $user->num_tarjeta = null;                  //Al no tener suscripcion no se crea realcion con tabla de pago
+        $user->email = $request->email;             
+        $user->password = $request->password;             
+        $user->fecha_nacimiento = $request->fecha_nacimiento;   
+        $user->suscripcion = false;                 
+        $user->num_tarjeta = null;                  
         $user->id_rol = $request->id_rol;           //Se le da un rol al usuario dependiendo de sus permisos
         $user->fecha_creacion = now();
         $edad = date_diff(date_create($user->fecha_nacimiento), date_create($user->fecha_creacion));
