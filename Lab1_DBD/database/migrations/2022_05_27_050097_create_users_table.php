@@ -23,8 +23,6 @@ return new class extends Migration
             $table->integer('edad')->nullable();
             $table->timestamp('fecha_creacion')->nullable();
             $table->boolean('suscripcion');
-            $table->integer('id_rol')->nullable();
-            $table->foreign('id_rol')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('num_tarjeta')->nullable();
             $table->foreign('num_tarjeta')->references('id')->on('methods')->onDelete('cascade')->onUpdate('cascade');
             $table->rememberToken();
