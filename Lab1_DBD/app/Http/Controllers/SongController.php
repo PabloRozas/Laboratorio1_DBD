@@ -82,7 +82,7 @@ class SongController extends Controller
         $newSong->id_album = $request->id_album;
         $newSong->restriccion_edad = $request->restriccion_edad;
         $newSong->fecha_creacion = $request->fecha_creacion;
-        $newSong->url_cancion = 'http://127.0.0.1:8000/songs/' ; 
+        $newSong->url_cancion = $request->url_cancion;
         $newSong->reproducciones = 0;
         $newSong->foto = $request->foto;
         if($request->hasFile('foto')){
@@ -148,7 +148,7 @@ class SongController extends Controller
     {
         //
         $datosSong = request()->except(['_token','_method']);
-        
+
         if($request->hasFile('foto')){
             $songs=Song::findOrFail($id);
             Storage::delete('public/'.$songs->foto);
@@ -156,7 +156,7 @@ class SongController extends Controller
         }
 
         Song::where('id','=',$id)->update($datosSong);
-        
+
         $songs=Song::findOrFail($id);
         return view('songs.edit', compact('songs'));
     }
@@ -172,7 +172,7 @@ class SongController extends Controller
         //
         $song=Song::findOrFail($id);
         if(Storage::delete('public/'.$song->foto)){
-            Song::destroy($id);    
+            Song::destroy($id);
         }
 
         return redirect('songs')->with('mensaje','Canción borrada.');

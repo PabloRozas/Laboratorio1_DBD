@@ -5,7 +5,7 @@
 <br>
 
 <label for="duracion"> Duración </label>
-<input type="text" name="duracion" value="{{ isset($songs->duracion)?$songs->duracion:'hh:mm:ss' }}" id="duracion"> 
+<input type="text" name="duracion" value="{{ isset($songs->duracion)?$songs->duracion:'hh:mm:ss' }}" id="duracion">
 <br>
 
 <label for="restriccion_edad"> Restricción de edad </label>
@@ -16,6 +16,10 @@
 
 <label for="fecha_creacion"> Fecha de creación </label>
 <input type="date" name="fecha_creacion" value="{{ isset($songs->fecha_creacion)?$songs->fecha_creacion:'' }}" id="fecha_creacion">
+<br>
+
+<label for="url_cancion">Url de canción</label>
+<input type="text" name="url_cancion" value="{{ isset($songs->url_cancion)?$songs->url_cancion:'' }}" id="url_creacion">
 <br>
 
 <label for="id_genero"> Género </label>
