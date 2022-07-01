@@ -59,12 +59,14 @@ Route::put('/playlist/update/{id}', [PlaylistController::class, 'update']);
 Route::delete('/playlist/delete/{id}', [PlaylistController::class, 'destroy']);
 Route::get('/playlist/restore/{id}', [PlaylistController::class, 'restore']);
 //FUNCIONALITY
+/** 
 Route::get('/funcionalities', [FuncionalityController::class, 'index']);
 Route::post('/funcionalities/create', [FuncionalityController::class, 'store']);
 Route::get('/funcionalities/{id}', [FuncionalityController::class, 'show']);
 Route::put('/funcionalities/update/{id}', [FuncionalityController::class, 'update']);
 Route::delete('/funcionalities/delete/{id}', [FuncionalityController::class, 'destroy']);
 Route::get('/funcionalities/restore/{id}', [FuncionalityController::class, 'restore']);
+*/
 //CARD TYPES
 Route::get('/card_types', [Card_TypeController::class, 'index']);
 Route::post('/card_types/create', [Card_TypeController::class, 'store']);
@@ -87,12 +89,14 @@ Route::put('/users/update/{id}', [UserController::class, 'update']);
 Route::delete('/users/delete/{id}', [UserController::class, 'destroy']);
 Route::get('/users/restore/{id}', [UserController::class, 'restore']);
 //ROLES
+/** 
 Route::get('/roles', [RoleController::class, 'index']);
 Route::get('/roles/{id}', [RoleController::class, 'show']);
 Route::post('/roles/create', [RoleController::class, 'store']);
 Route::put('/roles/update/{id}', [RoleController::class, 'update']);
 Route::delete('/roles/destroy/{id}', [RoleController::class, 'destroy']);
 Route::get('/roles/restore/{id}', [RoleController::class, 'restore']);
+*/
 //LOCACIONES
 Route::get('/location', [LocationController::class, 'index']);
 Route::get('/location/{id}', [LocationController::class, 'show']);
@@ -133,12 +137,14 @@ Route::post('/methods/update/{id}', [MethodController::class, 'update']);
 Route::delete('/methods/destroy/{id}', [MethodController::class, 'destroy']);
 Route::get('/methods/restore/{id}', [MethodController::class, 'restore']);
 // Functionality - roles
+/**
 Route::get('/functionalityrole', [FunctionalityRoleController::class, 'index']);
 Route::get('/functionalityrole/{id}', [FunctionalityRoleController::class, 'show']);
 Route::post('/functionalityrole/create', [FunctionalityRoleController::class, 'store']);
 Route::put('/functionalityrole/update/{id}', [FunctionalityRoleController::class, 'update']);
 Route::delete('/functionalityrole/delete/{id}', [FunctionalityRoleController::class, 'destroy']);
 Route::get('/functionalityrole/restore/{id}', [FunctionalityRoleController::class, 'restore']);
+*/
 // Song - Playlist
 Route::get('/songplaylist', [SongPlaylistController::class, 'index']);
 Route::get('/songplaylist/{id}', [SongPlaylistController::class, 'show']);
