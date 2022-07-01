@@ -86,6 +86,7 @@ class UserController extends Controller
         $user->fecha_creacion = now();
         $edad = date_diff(date_create($user->fecha_nacimiento), date_create($user->fecha_creacion));
         $user->edad = $edad->format('%y');
+        $user->assignRole('user');
         $user->save();
         return response()->json([
             'respuesta' => 'Se ha registrado un nuevo usuario.',
@@ -135,23 +136,23 @@ class UserController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'name'=>'required|max:30',
+                'name' => 'required|max:30',
                 'username' => 'required|min:4|max:100|unique:users,username',
-                'email'=>'required|max:30|unique:users,email',
-                'fecha_nacimiento'=>'required',
+                'email' => 'required|max:30|unique:users,email',
+                'fecha_nacimiento' => 'required',
                 'id_rol' => 'required',
                 'password' => 'required',
                 'suscripcion' => 'required'
             ],
             [
-                'name.required'=>'Debes ingresar un nombre',
+                'name.required' => 'Debes ingresar un nombre',
                 'username.unique' => 'El nombre de usuario ya existe',
                 'username.min' => 'El nickname debe ser de largo mínimo :min',
                 'username.max' => 'El nickname debe ser de largo máximo :max',
                 'username.required' => 'Debe ingresar un nickname de usuario',
-                'email.required'=>'Debe ingresar un correo electronico',
-                'email.unique'=>'El correo electronico ya existe',
-                'fecha_nacimiento.required'=>'Debe ingresar una fecha de nacimiento',
+                'email.required' => 'Debe ingresar un correo electronico',
+                'email.unique' => 'El correo electronico ya existe',
+                'fecha_nacimiento.required' => 'Debe ingresar una fecha de nacimiento',
                 'id_rol.required' => 'Debes seleccionar un rol',
                 'suscripcion' => 'Ingresa una suscripcion',
                 'password' => 'Porfavor ingrese la contraseña'
@@ -166,7 +167,7 @@ class UserController extends Controller
         }
         //$subject->name = $request->name;
         $user->username = $request->username;
-        $user->email =$request->email;
+        $user->email = $request->email;
         $user->fecha_nacimiento = $request->fecha_nacimiento;
         $user->password = $request->password;
         $user->id_rol = $request->id_rol;

@@ -33,32 +33,7 @@ class DatabaseSeeder extends Seeder
                 // \App\Models\User::factory(10)->create();
                 // 1ro - Modelos sin llaves Foraneas (sin FK)
 
-                //Role::factory(1)->create();
-                Role::create([
-                        'nombre_rol' => 'administrador',
-                ]);
-                Role::create([
-                        'nombre_rol' => 'usuario',
-                ]);
-                Role::create([
-                        'nombre_rol' => 'artista',
-                ]);
-                //Functionality::factory(10)->create();
-                Functionality::create([
-                        'nombre_fun' => 'crear',
-                ]);
-                
-                Functionality::create([
-                        'nombre_fun' => 'editar',
-                ]);
 
-                Functionality::create([
-                        'nombre_fun' => 'eliminar',
-                ]);
-
-                Functionality::create([
-                        'nombre_fun' => 'ver',
-                ]);
                 Genre::factory(10)->create();
                 Location::factory(10)->create();
                 Card_Type::factory(10)->create();
@@ -70,7 +45,6 @@ class DatabaseSeeder extends Seeder
                 Song::factory(10)->create();
                 Rating::factory(10)->create();
                 Playlist::factory(10)->create();
-                FunctionalityRole::factory(10)->create();
                 SongPlaylist::factory(10)->create();
                 Followup::factory(10)->create();
 

@@ -31,7 +31,6 @@ class UserFactory extends Factory
             'fecha_nacimiento' => $this->faker->date(),
             'edad' => $this->faker->numberBetween($min = 10, $max = 50),
             'suscripcion' => $this->faker->boolean(),
-            'id_rol' => Role::all()->random()->id,
             'num_tarjeta' => Method::all()->random()->id,
             'remember_token' => Str::random(10),
             //'id_playlists' => Playlist::all()->random()->id,
