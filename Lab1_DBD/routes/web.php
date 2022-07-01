@@ -160,7 +160,7 @@ Route::put('/followups/update/{id}', [FollowupController::class, 'update']);
 Route::delete('/followups/destroy/{id}', [FollowupController::class, 'destroy']);
 Route::get('/followups/restore/{id}', [FollowupController::class, 'restore']);
 
-//Auth::routes();
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
