@@ -68,12 +68,11 @@
 
                     </div>
                     <div class="d-grid gap-2 col-6 mx-auto mb-3">
-                        <button class="btn btn-lg btn-primary" type="button"> ▶️ </button>
-                        <a href=" {{ url('/songs/'.$song->id.'/edit') }}">
-                            Editar
-                        </a>
-
-
+                        <audio controls id = "music">
+                            <source src="{{ asset($song->url_cancion) }}" type= "audio/mpeg">
+                        </audio>
+                        <button id="eventoPlay" class="btn btn-lg btn-primary" type="button"> ▶️ </button>
+                        <a href=" {{ url('/songs/'.$song->id.'/edit') }}">Editar</a>
                         <form action="{{url('/songs/'.$song->id)}}" method="post">
                             @csrf
                             {{ method_field('DELETE') }}
