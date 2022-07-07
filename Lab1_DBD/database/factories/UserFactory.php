@@ -4,10 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Role;
 use App\Models\Method;
-use App\Models\Song;
-use App\Models\Playlist;
 
 
 /**
@@ -34,6 +31,7 @@ class UserFactory extends Factory
             'num_tarjeta' => Method::all()->random()->id,
             'remember_token' => Str::random(10),
             //'id_playlists' => Playlist::all()->random()->id,
+
 
         ];
     }

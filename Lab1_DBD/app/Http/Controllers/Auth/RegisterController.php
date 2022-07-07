@@ -74,7 +74,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'suscripcion' => false,
             'fecha_nacimiento' => $data['fecha_nacimiento'],
-        ]);
+        ])->assignRole('user');;
 
     }
 }

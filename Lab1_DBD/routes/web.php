@@ -6,16 +6,16 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\Card_TypeController;
-use App\Http\Controllers\FuncionalityController;
+//use App\Http\Controllers\FuncionalityController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\RoleController;
+//use App\Http\Controllers\RoleController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\SongController;
-use App\Http\Controllers\AuthenticationController;
+//use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\MethodController;
-use App\Http\Controllers\FunctionalityRoleController;
+//use App\Http\Controllers\FunctionalityRoleController;
 use App\Http\Controllers\SongPlaylistController;
 use App\Http\Controllers\FollowupController;
 
@@ -37,6 +37,11 @@ Route::get('/', function () {
 Route::get('/escucha', function () {
     return view('escucha');
 });
+
+Route::get('/admin', function () {
+    return view('/admin/index');
+});
+
 //GENRES
 Route::get('/genres', [GenreController::class, 'index']);
 Route::get('/genres/{id}', [GenreController::class, 'show']);

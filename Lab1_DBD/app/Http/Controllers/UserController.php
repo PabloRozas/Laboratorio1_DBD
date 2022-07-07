@@ -24,7 +24,7 @@ class UserController extends Controller
                 'respuesta' => 'No se encuentran Usuarios registrados.',
             ]);
         }
-        return response($users, 200);
+        return view('/admin/index', compact('users'));
     }
 
     /**
