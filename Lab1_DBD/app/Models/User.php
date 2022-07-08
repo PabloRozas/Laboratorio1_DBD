@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-
+use Carbon\Carbon;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles;
@@ -39,6 +39,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Followup');
     }
 
+    public function getAge()
+    {
+   return Carbon::parse($this->attributes['fecha_nacimiento'])->age;
+    }
 
 
 

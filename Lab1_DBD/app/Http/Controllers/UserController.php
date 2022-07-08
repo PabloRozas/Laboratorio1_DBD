@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 
 class UserController extends Controller
@@ -26,6 +27,7 @@ class UserController extends Controller
         }
         return view('/admin/index', compact('users'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -75,15 +77,13 @@ class UserController extends Controller
         $user = new User;
         $user->name = $request->name;               //Se pide un usuario que no exista
         $user->username = $request->username;       //Username que no exista
-        $user->email = $request->email;             
-        $user->password = $request->password;             
-        $user->fecha_nacimiento = $request->fecha_nacimiento;   
-        $user->suscripcion = false;                 
-        $user->num_tarjeta = null;                  
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->fecha_nacimiento = $request->fecha_nacimiento;
+        $user->suscripcion = false;
+        $user->num_tarjeta = null;
         $user->id_rol = $request->id_rol;           //Se le da un rol al usuario dependiendo de sus permisos
         $user->fecha_creacion = now();
-        $edad = date_diff(date_create($user->fecha_nacimiento), date_create($user->fecha_creacion));
-        $user->edad = $edad->format('%y');
         $user->assignRole('user');
         $user->save();
         return response()->json([
@@ -170,6 +170,7 @@ class UserController extends Controller
         $user->password = $request->password;
         $user->id_rol = $request->id_rol;
         $user->suscripcion = $request->suscripcion;
+        $user->fecha_creacion = now();
 
         $user->save();
         return response()->json([
