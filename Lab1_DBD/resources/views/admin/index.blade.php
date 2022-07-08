@@ -55,7 +55,7 @@
                     </ul>
 
                     <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                        <input class="form-control me-2" type="search" placeholder="Buscar por ID" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
                 </div>
@@ -70,8 +70,8 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Rol</th>
                     <th scope="col">Suscripción</th>
+                    <th scope="col">Rol</th>
                 </tr>
             </thead>
             <tbody>
@@ -81,7 +81,14 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->username}}</td>
                     <td>{{$user->email}}</td>
-                    @if ($user->roles()->pluck('name')->first() == 'admin')
+                    @if ($user->suscripcion == 1)
+                    <td>✓</td>
+                    @else
+                    <td>X</td>
+                    @endif
+
+
+                    @if ($user->roles()->pluck('name')->first() == 'admin' and $user->id != 1)
                     <td>
                         <div class="btn-group">
                             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
@@ -123,6 +130,8 @@
                             </ul>
                         </div>
                     </td>
+                    @elseif ($user->roles()->pluck('name')->first() == 'admin' and $user->id == 1)
+                    <td>Admin</td>
                     @else
                     <td>
                         <div class="btn-group">
@@ -138,12 +147,8 @@
                         </div>
                     </td>
                     @endif
-                    @if ($user->suscripcion == 1)
-                        <td>Suscrito</td>
-                    @else
-                        <td>No Suscrito</td>
-                    @endif
-                    
+
+
 
                 </tr>
                 @endforeach
