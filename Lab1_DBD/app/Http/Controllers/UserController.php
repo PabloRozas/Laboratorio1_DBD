@@ -55,7 +55,6 @@ class UserController extends Controller
                 'email' => 'required|max:30|unique:users,email',
                 'password' => 'required|min:4|max:30',
                 'fecha_nacimiento' => 'required',
-                'id_rol' => 'required'
             ],
             [
                 'name.required' => 'Debes ingresar un nombre',
@@ -68,7 +67,6 @@ class UserController extends Controller
                 'email.required' => 'Debe ingresar un correo electronico',
                 'email.unique' => 'El correo electronico ya existe',
                 'fecha_nacimiento.required' => 'Debe ingresar una fecha de nacimiento',
-                'id_rol.required' => 'Debes seleccionar un rol'
             ]
         );
         if ($validator->fails()) {
@@ -138,7 +136,6 @@ class UserController extends Controller
                 'username' => 'required|min:4|max:100|unique:users,username',
                 'email' => 'required|max:30|unique:users,email',
                 'fecha_nacimiento' => 'required',
-                'id_rol' => 'required',
                 'password' => 'required',
                 'suscripcion' => 'required'
             ],
@@ -151,7 +148,6 @@ class UserController extends Controller
                 'email.required' => 'Debe ingresar un correo electronico',
                 'email.unique' => 'El correo electronico ya existe',
                 'fecha_nacimiento.required' => 'Debe ingresar una fecha de nacimiento',
-                'id_rol.required' => 'Debes seleccionar un rol',
                 'suscripcion' => 'Ingresa una suscripcion',
                 'password' => 'Porfavor ingrese la contraseña'
             ]
@@ -172,6 +168,41 @@ class UserController extends Controller
         $user->suscripcion = $request->suscripcion;
         $user->fecha_creacion = now();
 
+        $user->save();
+        return response()->json([
+            'respuesta' => 'Se ha modificado el Usuario.',
+            'id' => $user->id
+        ], 200);
+    }
+
+    //Metodo para actualizar el rol de un usuario
+    public function updateRol(Request $request, $id)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [   
+                //Se valida que el rol se admin, user o artist
+                'id_rol' => 'required|in:1,2,3'
+                
+            ],
+            [
+                'rol.required' => 'Debes ingresar un rol'
+            ]
+        );
+        if ($validator->fails()) {
+            return response($validator->errors());
+        }
+        $user = User::find($id);
+        if (empty($user)) {
+            return response()->json(['User no válido.']);
+        }
+        if($request->id_rol == 1){
+            $user->assignRole('admin');
+        }else if($request->id_rol == 2){
+            $user->assignRole('user');
+        }else if($request->id_rol == 3){
+            $user->assignRole('artist');
+        }
         $user->save();
         return response()->json([
             'respuesta' => 'Se ha modificado el Usuario.',

@@ -41,9 +41,12 @@ Route::get('/escucha', function () {
     return view('escucha');
 });
 
+
+
 Route::get('/admin', function () {
     return view('/admin/index');
 });
+
 
 //GENRES
 Route::get('/genres', [GenreController::class, 'index']);
@@ -94,6 +97,7 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
 Route::post('/users/create', [UserController::class, 'store']);
 Route::put('/users/update/{id}', [UserController::class, 'update']);
+Route::put('/users/update_role/{id}', [UserController::class, 'updateRol']);
 Route::delete('/users/delete/{id}', [UserController::class, 'destroy']);
 Route::get('/users/restore/{id}', [UserController::class, 'restore']);
 //ROLES
