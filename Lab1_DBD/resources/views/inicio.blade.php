@@ -52,7 +52,11 @@
                 <p class="lead">DEBEDE es tu nueva plataform para escuchar musica cuando quieras, donde quieras.</p>
                 <p class="lead">Especialmente construida para los alumnos de la USACH, por alumnos de la USACH.</p>
                 <p class="lead">
+                    @guest
+                    <a href="/login" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Ingresa a la App</a>
+                    @else
                     <a href="/songs" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Ingresa a la App</a>
+                    @endguest
                 </p>
             </main>
 
