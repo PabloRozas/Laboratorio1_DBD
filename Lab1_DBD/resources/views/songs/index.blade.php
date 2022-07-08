@@ -87,3 +87,5 @@
     </div>
     </div>
 </body>
+</div>
+@endsection

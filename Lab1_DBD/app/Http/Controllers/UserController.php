@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -84,14 +85,7 @@ class UserController extends Controller
         $user->fecha_creacion = now();
         $user->assignRole('user');
         $user->save();
-        return response()->json([
-            'respuesta' => 'Se ha registrado un nuevo usuario.',
-            'id' => $user->id,
-            'nombre' => $user->name,
-            'correo' => $user->email,
-            'rol' => $user->id_rol,
-            'suscripcion' => $user->suscripcion
-        ], 201);
+        return redirect('users')->with('mensaje','Nuevo usuario agregado.');
     }
 
     /**
@@ -117,7 +111,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users=User::findOrFail($id);
+        return view('admin.edit', compact('users'));
     }
 
     /**
@@ -127,6 +122,41 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function update(Request $request, $id)
+    {
+        //
+        $datosUser = request()->except(['_token','_method']);
+
+        User::where('id','=',$id)->update($datosUser);
+
+        $users=User::findOrFail($id);
+        return view('users.view', compact('users'));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
     public function update(Request $request, $id)
     {
         $validator = Validator::make(
@@ -209,6 +239,19 @@ class UserController extends Controller
             'id' => $user->id
         ], 200);
     }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Remove the specified resource from storage.

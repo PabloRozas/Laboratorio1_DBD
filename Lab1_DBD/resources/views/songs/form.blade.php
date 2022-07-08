@@ -43,6 +43,6 @@
 <br>
 
 
-<input type="submit" value="{{$modo}} datos">
+<input class="btn btn-success" type="submit" value="{{$modo}} datos">
 
 <a href="{{ url('songs/') }}"  > Volver </a>
