@@ -30,6 +30,9 @@ use App\Http\Controllers\FollowupController;
 |
 */
 
+Route::get(('/usuario'), function () {
+    return view('users/usuario');
+});
 Route::get('/', function () {
     return view('inicio');
 });
@@ -67,7 +70,7 @@ Route::put('/playlist/update/{id}', [PlaylistController::class, 'update']);
 Route::delete('/playlist/delete/{id}', [PlaylistController::class, 'destroy']);
 Route::get('/playlist/restore/{id}', [PlaylistController::class, 'restore']);
 //FUNCIONALITY
-/** 
+/**
 Route::get('/funcionalities', [FuncionalityController::class, 'index']);
 Route::post('/funcionalities/create', [FuncionalityController::class, 'store']);
 Route::get('/funcionalities/{id}', [FuncionalityController::class, 'show']);
@@ -98,7 +101,7 @@ Route::put('/users/update_role/{id}', [UserController::class, 'updateRol']);
 Route::delete('/users/delete/{id}', [UserController::class, 'destroy']);
 Route::get('/users/restore/{id}', [UserController::class, 'restore']);
 //ROLES
-/** 
+/**
 Route::get('/roles', [RoleController::class, 'index']);
 Route::get('/roles/{id}', [RoleController::class, 'show']);
 Route::post('/roles/create', [RoleController::class, 'store']);
@@ -176,3 +179,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //COMANDO PARA OBTENER TODAS LAS RUTAS.
 Route::resource('songs', SongController::class);
+
+Route::resource('users', UserController::class);

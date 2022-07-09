@@ -24,7 +24,6 @@ class UserFactory extends Factory
             'username' => $this->faker->userName(),
             'password' => $this->faker->password(),
             'email' => $this->faker->unique()->safeEmail(),
-            'fecha_creacion' => now(),
             'fecha_nacimiento' => $this->faker->date(),
             'edad' => $this->faker->numberBetween($min = 10, $max = 50),
             'suscripcion' => $this->faker->boolean(),

@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="/songs">Inicio</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -158,6 +158,14 @@
                     @endif
 
 
+                    @if ($user->suscripcion == 1)
+                        <td>Suscrito</td>
+                    @else
+                        <td>No Suscrito</td>
+                    @endif
+                    <td>
+                    <a class="btn btn-secondary" href=" {{ url('/users/'.$user->id.'/edit') }}">Editar</a>
+                    </td>
 
                 </tr>
                 @endforeach

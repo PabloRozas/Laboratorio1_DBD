@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
 Formulario de subida de una canción
 <form action="{{ url('/songs') }}" method="post" enctype="multipart/form-data">
 @csrf
@@ -11,7 +15,8 @@ Formulario de subida de una canción
 
 
 </form>
-
+</div>
+@endsection
 
 
 
