@@ -204,7 +204,7 @@ class UserController extends Controller
             'id' => $user->id
         ], 200);
     }
-
+*/
     //Metodo para actualizar el rol de un usuario
     public function updateRol(Request $request, $id)
     {
@@ -245,13 +245,19 @@ class UserController extends Controller
                 $user->assignRole('artist');
             }
         }
-       
+        $users = User::all();
+        if ($users->isEmpty()) {
+            return response()->json([
+                'respuesta' => 'No se encuentran Usuarios registrados.',
+            ]);
+        }
+        
         
        
         
         return view('/admin/index', compact('users'));
     }
-*/
+
 
 
 

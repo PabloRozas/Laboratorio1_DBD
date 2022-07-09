@@ -115,13 +115,14 @@
                                 User
                             </button>
                             <ul class="dropdown-menu">
+                                <form action="{{action('UserController@updateRol', ['id' => $user->id])}}" method="POST">
                                 @method('PUT')
                                 <li><a class="dropdown-item"
                                         href="{{action('UserController@updateRol', ['id' => $user->id])}}"
                                         aria-valuenow="1">Admin</a></li>
                                 <li><a class="dropdown-item" href="#">User</a></li>
                                 <li><a class="dropdown-item" href="#">Artist</a></li>
-
+                                </form>
                             </ul>
                         </div>
                     </td>
@@ -158,14 +159,10 @@
                     @endif
 
 
-                    @if ($user->suscripcion == 1)
-                        <td>Suscrito</td>
-                    @else
-                        <td>No Suscrito</td>
-                    @endif
+                    <!--
                     <td>
                     <a class="btn btn-secondary" href=" {{ url('/users/'.$user->id.'/edit') }}">Editar</a>
-                    </td>
+                    </td> -->
 
                 </tr>
                 @endforeach
