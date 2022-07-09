@@ -195,18 +195,30 @@ class UserController extends Controller
         if (empty($user)) {
             return response()->json(['User no válido.']);
         }
-        if($request->id_rol == 1){
-            $user->assignRole('admin');
-        }else if($request->id_rol == 2){
-            $user->assignRole('user');
-        }else if($request->id_rol == 3){
-            $user->assignRole('artist');
+        //Se remueve el rol anterior del usuario
+        if(empty($user->roles->first()->name)){
+            if($request->id_rol == 1){
+                $user->assignRole('admin');
+            }else if($request->id_rol == 2){
+                $user->assignRole('user');
+            }else if($request->id_rol == 3){
+                $user->assignRole('artist');
+            }
+        }else{
+            $user->removeRole($user->roles->first()->name);
+            if($request->id_rol == 1){
+                $user->assignRole('admin');
+            }else if($request->id_rol == 2){
+                $user->assignRole('user');
+            }else if($request->id_rol == 3){
+                $user->assignRole('artist');
+            }
         }
-        $user->save();
-        return response()->json([
-            'respuesta' => 'Se ha modificado el Usuario.',
-            'id' => $user->id
-        ], 200);
+       
+        
+       
+        
+        return view('/admin/index', compact('users'));
     }
 
     /**

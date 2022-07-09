@@ -100,8 +100,7 @@
                                 Admin
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="" {{ action('UserController@updateRol',
-                                        ['request'=>1,'id'=>$user->id]) }}>Admin</a></li>
+                                <li><a class="dropdown-item" href="">Admin</a></li>
                                 <li><a class="dropdown-item" href="#">User</a></li>
                                 <li><a class="dropdown-item" href="#">Artist</a></li>
                             </ul>
@@ -115,13 +114,11 @@
                                 User
                             </button>
                             <ul class="dropdown-menu">
-                                @method('PUT')
-                                <li><a class="dropdown-item"
-                                        href="{{action('UserController@updateRol', ['id' => $user->id])}}"
-                                        aria-valuenow="1">Admin</a></li>
+                                
+                                <li><a class="dropdown-item" href="">Admin</a></li>
                                 <li><a class="dropdown-item" href="#">User</a></li>
                                 <li><a class="dropdown-item" href="#">Artist</a></li>
-
+                            </form>
                             </ul>
                         </div>
                     </td>
