@@ -33,14 +33,11 @@
 <label for="id_album"> Albúm </label>
 <input type="text" name="id_album" value="{{ isset($songs->id_album)?$songs->id_album:'' }}" id="id_album">
 <br>
-<label> Imagen: </label> <br>
-<label for="foto"> </label>
-@if(isset($songs->foto))
-<img src="{{ asset('storage'.'/'.$songs->foto) }}" width="100" alt="">
-@endif
+
+<label for="foto"> Imagén </label>
+<input type="text" name="foto" value="{{ isset($songs->foto)?$songs->foto:'' }}" id="foto">
 <br>
-<input type="file" name="foto" value="" id="foto">
-<br>
+
 
 
 <input class="btn btn-success" type="submit" value="{{$modo}} datos">

@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Genre extends Model
 {
     use HasFactory, SoftDeletes;
+
+    public function Songs()
+    {
+        return $this->hasMany(Song::class);
+    }
 }

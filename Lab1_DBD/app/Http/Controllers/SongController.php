@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Song;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -26,9 +27,10 @@ class SongController extends Controller
         return response($songs, 200);
 
         */
-        $songs['songs']=Song::paginate(25);
+        $songs['songs']= Song::paginate(25);
         return view('songs.index',$songs);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -85,9 +87,9 @@ class SongController extends Controller
         $newSong->url_cancion = $request->url_cancion;
         $newSong->reproducciones = 0;
         $newSong->foto = $request->foto;
-        if($request->hasFile('foto')){
-            $newSong['foto']=$request->file('foto')->store('uploads','public');
-        }
+        //if($request->hasFile('foto')){
+            //$newSong['foto']=$request->file('foto')->store('uploads','public');
+        //}
         $newSong->save();
 
         return redirect('songs')->with('mensaje','Nueva canción agregada.');
@@ -149,11 +151,11 @@ class SongController extends Controller
         //
         $datosSong = request()->except(['_token','_method']);
 
-        if($request->hasFile('foto')){
-            $songs=Song::findOrFail($id);
-            Storage::delete('public/'.$songs->foto);
-            $datosSong['foto']=$request->file('foto')->store('uploads','public');
-        }
+        // if($request->hasFile('foto')){
+        //     $songs=Song::findOrFail($id);
+        //     Storage::delete('public/'.$songs->foto);
+        //     $datosSong['foto']=$request->file('foto')->store('uploads','public');
+        // }
 
         Song::where('id','=',$id)->update($datosSong);
 
