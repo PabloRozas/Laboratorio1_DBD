@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Song;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -26,7 +27,7 @@ class SongController extends Controller
         return response($songs, 200);
 
         */
-        $songs['songs']=Song::paginate(25);
+        $songs['songs']= Song::paginate(25);
         return view('songs.index',$songs);
     }
 

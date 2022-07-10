@@ -39,7 +39,7 @@
                         @endif
                     @endif
                 </ul>
-                <div class="input-group w-25 ms-auto me-5 justify-content-end ">
+                {{-- <div class="input-group w-25 ms-auto me-5 justify-content-end ">
                     <form action="{{ route('songs.filter') }}" method="GET">
                         <input type="text" name="genre" class="form-control" aria-label="Text input with dropdown button" value="{{$genre ?? ''}}">
 
@@ -55,7 +55,7 @@
                             <li><a class="dropdown-item" href="#">Separated link</a></li>
                         </ul>
                     </form>
-                </div>
+                </div> --}}
             </div>
         </nav>
         <div class="container mt-3">
@@ -63,27 +63,36 @@
                 @foreach ($songs as $song)
                     <div class="col">
 
-                        <div class="card h-50">
-                            <img src="{{ asset($song->foto) }}" class="card-img-top h-100" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $song->titulo }}</h5>
-                                <p class="card-text">{{ $song->duracion }}</p>
-
+                        <div class="card" >
+                            <div class="card-block">
+                            <img src="{{ asset($song->foto) }}" class="card-img-top mh-100" style="height: 300px;" alt="...">
+                            <div class="card-body ">
+                                <h5 class="card-title">Titulo: {{ $song->titulo }}</h5>
+                                <p class="card-text">Duración: {{ $song->duracion }}</p>
+                                <p class="card-text">Genero : {{ $song->genre->nombre_genero ?? '' }}</p>
+                                <p class="card-text">Album : {{ $song->album->nombre_album ?? '' }}</p>
+                                <p class="card-text">País : {{ $song->location->nombre_pais ?? '' }}</p>
                             </div>
                             <div class="d-grid gap-2 col-6 mx-auto mb-3">
+
                                 <audio controls id="music">
                                     <source src="{{ asset($song->url_cancion) }}" type="audio/mpeg">
                                 </audio>
-                                <a href=" {{ url('/songs/' . $song->id . '/edit') }}">Editar</a>
-                                <form action="{{ url('/songs/' . $song->id) }}" method="post">
-                                    @csrf
-                                    {{ method_field('DELETE') }}
-                                    <input type="submit" onclick="return confirm('¿Seguro que deseas borrar?')"
-                                        value="Borrar">
-                                </form>
+                                <a class="btn btn-primary btn-lg btn-warning" role="button"
+                                    href=" {{ url('/songs/' . $song->id . '/edit') }}">Editar</a>
+
+                                <div class="d-flex justify-content-center">
+                                    <form action="{{ url('/songs/' . $song->id) }}" method="post">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <input class="btn btn-primary btn-lg btn-danger " type="submit"
+                                            onclick="return confirm('¿Seguro que deseas borrar?')" value="Borrar">
+                                    </form>
+                                </div>
                             </div>
                         </div>
 
+                        </div>
                     </div>
                 @endforeach
             </div>

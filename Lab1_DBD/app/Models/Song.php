@@ -13,16 +13,16 @@ class Song extends Model
     protected $dates = ['deleted_at'];
     public function Genre()
     {
-        return $this->belongsTo('App\Genre');
+        return $this->hasOne(Genre::class, 'id', 'id_genero');
     }
     public function Location()
     {
-        return $this->belongsTo('App\Location');
+        return $this->hasOne(Location::class, 'id', 'id_pais');
     }
 
     public function Album()
     {
-        return $this->belongsTo('App\Album');
+        return $this->hasOne(Album::class, 'id', 'id_album');
     }
 
     //funcion de realcion con la tabla playlist_songs
