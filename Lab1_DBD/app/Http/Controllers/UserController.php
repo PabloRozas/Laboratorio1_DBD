@@ -96,11 +96,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $subject = User::find($id);
-        if (empty($subject)) {
+        $user = User::find($id);
+        if (empty($user)) {
             return response()->json('El Usuario ingresado no existe.');
         }
-        return response($subject);
+        return view('admin.veruser', compact('user'));
     }
 
     /**
@@ -122,38 +122,39 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
-        $datosUser = request()->except(['_token','_method']);
+        /**
+        *$validator = Validator::make(
+        *    $request->all(),
+        *    [
+        *        'name' => 'required|min:4|max:30|unique:users,name',
+        *        'username' => 'required|min:4|max:100|unique:users,username',
+        *        'email' => 'required|max:30|unique:users,email',
+        *        'password' => 'required|min:4|max:30',
+        *        'fecha_nacimiento' => 'required',
+        *    ],
+        *    [
+        *        'name.required' => 'Debes ingresar un nombre',
+        *        'name.min' => 'El nombre debe ser de largo mínimo :min',
+        *        'name.max' => 'El nombre debe ser de largo máximo :max',
+        *        'username.unique' => 'El nombre de usuario ya existe',
+        *        'username.min' => 'El nickname debe ser de largo mínimo :min',
+        *        'username.max' => 'El nickname debe ser de largo máximo :max',
+        *        'username.required' => 'Debe ingresar un nickname de usuario',
+        *        'email.required' => 'Debe ingresar un correo electronico',
+        *        'email.unique' => 'El correo electronico ya existe',
+        *        'fecha_nacimiento.required' => 'Debe ingresar una fecha de nacimiento',
+        *    ]
+        *);
+        */
+        
+        $user->update($request->all());
 
-        User::where('id','=',$id)->update($datosUser);
-
-        $users=User::findOrFail($id);
-        return view('users.view', compact('users'));
+        
+        
+        return redirect()->route('users.index')->with('mensaje','Usuario actualizado.');
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /*
     public function update(Request $request, $id)

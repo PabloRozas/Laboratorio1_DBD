@@ -52,6 +52,9 @@
             <td>No definido</td>
             @endif
             <td>
+                {{-- Boton ver --}}
+                <a href="{{ route('users.show', $user) }}" class="btn btn-outline-primary">Ver</a>
+                {{-- Boton editar --}}
                 <a href="{{ route('users.edit', $user) }}" class="btn btn-outline-primary">Editar</a>
                 <a href="/admin/user/{{ $user->id }}/delete" class="btn btn-outline-danger">Eliminar</a>
             
