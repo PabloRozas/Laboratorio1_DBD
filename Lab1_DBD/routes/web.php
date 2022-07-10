@@ -46,6 +46,9 @@ Route::get('/admin/usercreate', function () {
     return view('/admin/usercreate');
 });
 
+Route::get(('/artista'), function () {
+    return view('/artistas/index');
+});
 
 //GENRES
 Route::get('/genres', [GenreController::class, 'index']);
