@@ -25,13 +25,32 @@
             <th scope="col">Suscripción</th>
             <th scope="col">Rol</th>
             <th scope="col">Acciones</th>
+            <th scope="col"></th>
         </tr>
     </thead>
 
     <tbody>
         @foreach ($users as $user)
 
+        @if ($user->id == 1)
+        <tr>
+         <th scope="row">{{ $user->id }}</th>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->username }}</td>
+            <td>{{ $user->email }}</td>
+            @if ($user->suscripcion == 1)
+            <td>✓</td>
+            @else
+            <td>✗</td>
+            @endif
 
+            <td>Admin</td>
+            <td></td>
+            <td></td>
+        </tr>
+        
+            
+        @else
         <tr>
             <th scope="row">{{ $user->id }}</th>
             <td>{{ $user->name }}</td>
@@ -56,10 +75,18 @@
                 <a href="{{ route('users.show', $user) }}" class="btn btn-outline-primary">Ver</a>
                 {{-- Boton editar --}}
                 <a href="{{ route('users.edit', $user) }}" class="btn btn-outline-primary">Editar</a>
-                <a href="/admin/user/{{ $user->id }}/delete" class="btn btn-outline-danger">Eliminar</a>
+            </td>
+            <td>
+                <form action="{{ route('users.destroy', $user) }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                </form>
+            </td>
+            
             
         </tr>
-              
+        @endif       
 
         @endforeach
     </tbody>

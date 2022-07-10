@@ -277,33 +277,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)    //Funciona correctamente
+    public function destroy(User $user)    //Funciona correctamente
     {
-        $user = User::find($id);
-        if (empty($user)) {
-            return response()->json([]);
-        }
         $user->delete();
-        return response()->json([
-            'respuesta' => 'Se ha desactivado el usuario.',
-            'id' => $user->id,
-            'username' => $user->username,
-            'suscrito' => $user->suscripcion,
-        ], 200);
+        return redirect()->route('users.index')->with('mensaje','Usuario eliminado.');
     }
 
-    public function restore($id)    //Funciona Correctamente
+    public function restore(User $user)  
     {
-        $user = User::onlyTrashed()->find($id);
+        $user = User::onlyTrashed()->find($user);
         if (empty($user)) {
             return response()->json(['El usuario no ha sido desactivado con anterioridad.']);
         }
         $user->restore();
-        return response()->json([
-            'respuesta' => 'Se ha activado el usuario.',
-            'id' => $user->id,
-            'username' => $user->username,
-            'suscrito' => $user->suscripcion,
-        ], 200);
+        return view('admin.index');
     }
 }
