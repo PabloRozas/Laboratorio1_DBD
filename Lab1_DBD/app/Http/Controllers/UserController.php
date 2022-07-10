@@ -111,7 +111,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        dd($user);
+        return view('admin.editar_usuario', compact('user'));
     }
 
     /**

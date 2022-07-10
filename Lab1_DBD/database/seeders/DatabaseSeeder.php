@@ -36,17 +36,16 @@ class DatabaseSeeder extends Seeder
                 Role::create(['name' => 'admin']);
                 Role::create(['name' => 'user']);
                 Role::create(['name' => 'artist']);
-                Role::create(['name' => 'super-admin']);
                 User::create([
                         'name' => 'admin',
                         'username' => 'admin',
                         'email' => 'admin@test',
-                        'fecha_nacimiento' => NULL,
+                        'fecha_nacimiento' => '2020-01-01',
                         'password' => bcrypt('admin'),
                         'fecha_creacion' => NULL,
                         'suscripcion' => true,
                         'num_tarjeta' => NULL,
-                ])->assignRole('super-admin');
+                ])->assignRole('admin');
                 Genre::factory(10)->create();
                 Location::factory(10)->create();
                 Card_Type::factory(10)->create();

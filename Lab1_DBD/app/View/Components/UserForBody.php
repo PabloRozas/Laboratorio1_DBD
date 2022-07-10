@@ -2,18 +2,23 @@
 
 namespace App\View\Components;
 
+use App\Models\User;
 use Illuminate\View\Component;
 
 class UserForBody extends Component
 {
     /**
      * Create a new component instance.
-     *
+     *@param /app/models/User $user
      * @return void
      */
-    public function __construct()
+    public function __construct( $user = NULL)
     {
         //
+        if($user == NULL){
+            $user = User::make([]);
+        }
+        $this->user = $user;    
     }
 
     /**
@@ -23,6 +28,9 @@ class UserForBody extends Component
      */
     public function render()
     {
-        return view('components.user-for-body');
+        $params = [
+            'user' => $this->user,
+        ];
+        return view('components.user-for-body', $params);
     }
 }

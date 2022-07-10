@@ -94,7 +94,7 @@ Route::get('/albums/restore/{id}', [AlbumController::class, 'restore']);
 //USERS
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/{id}', [UserController::class, 'show']);
-Route::post('/users/create', [UserController::class, 'store'])->name('users.strore');
+Route::post('/users/create', [UserController::class, 'store']);
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::put('/users/update/{id}', [UserController::class, 'update']);
 Route::put('/users/update_role/{id}', [UserController::class, 'updateRol']);
