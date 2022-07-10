@@ -75,49 +75,73 @@
         <div class="container mt-3">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @foreach ($songs as $song)
-                    <div class="col">
+                @guest
 
-                        <div class="card">
-                            <div class="card-block">
-                                <img src="{{ asset($song->foto) }}" class="card-img-top mh-100" style="height: 300px;"
-                                    alt="...">
-                                <div class="card-body ">
-                                    <h5 class="card-title">Titulo: {{ $song->titulo }}</h5>
-                                    <p class="card-text">Duración: {{ $song->duracion }}</p>
-                                    <p class="card-text">Genero : {{ $song->genre->nombre_genero ?? '' }}</p>
-                                    <p class="card-text">Album : {{ $song->album->nombre_album ?? '' }}</p>
-                                    <p class="card-text">País : {{ $song->location->nombre_pais ?? '' }}</p>
+                        <div class="col">
+
+                            <div class="card">
+                                <div class="card-block">
+                                    <img src="{{ asset($song->foto) }}" class="card-img-top mh-100" style="height: 300px;"
+                                        alt="...">
+                                    <div class="card-body ">
+                                        <h5 class="card-title">Titulo: {{ $song->titulo }}</h5>
+                                        <p class="card-text">Duración: {{ $song->duracion }}</p>
+                                        <p class="card-text">Genero : {{ $song->genre->nombre_genero ?? '' }}</p>
+                                        <p class="card-text">Album : {{ $song->album->nombre_album ?? '' }}</p>
+                                        <p class="card-text">País : {{ $song->location->nombre_pais ?? '' }}</p>
+                                    </div>
                                 </div>
-                                @Auth
-                                    @if (@Auth::user()->suscripcion)
-                                        <div class="d-grid gap-2 col-6 mx-auto mb-3">
-
-                                            <audio controls id="music">
-                                                <source src="{{ asset($song->url_cancion) }}" type="audio/mpeg">
-                                            </audio>
-                                    @endif
-
-                                    @if (@Auth::user()->hasRole(['admin', 'artist']))
-                                        <a class="btn btn-primary btn-lg btn-warning" role="button"
-                                            href=" {{ url('/songs/' . $song->id . '/edit') }}">Editar</a>
-                                    @endif
-                                    @if (@Auth::user()->hasRole('admin'))
-                                        <div class="d-flex justify-content-center">
-                                            <form action="{{ url('/songs/' . $song->id) }}" method="post">
-                                                @csrf
-                                                {{ method_field('DELETE') }}
-                                                <input class="btn btn-primary btn-lg btn-danger " type="submit"
-                                                    onclick="return confirm('¿Seguro que deseas borrar?')" value="Borrar">
-                                            </form>
-                                        </div>
-                                    @endif
-                                </div>
-                            @endauth
+                            </div>
                         </div>
+                @endguest
+                @Auth
+                    @if ($song->restriccion_edad == '0' || @Auth::user()->getAge() >= 18 || @Auth::user()->hasRole('admin'))
+                        <div class="col">
 
-                    </div>
+                            <div class="card">
+                                <div class="card-block">
+                                    <img src="{{ asset($song->foto) }}" class="card-img-top mh-100" style="height: 300px;"
+                                        alt="...">
+                                    <div class="card-body ">
+                                        <h5 class="card-title">Titulo: {{ $song->titulo }}</h5>
+                                        <p class="card-text">Duración: {{ $song->duracion }}</p>
+                                        <p class="card-text">Genero : {{ $song->genre->nombre_genero ?? '' }}</p>
+                                        <p class="card-text">Album : {{ $song->album->nombre_album ?? '' }}</p>
+                                        <p class="card-text">País : {{ $song->location->nombre_pais ?? '' }}</p>
+                                    </div>
+                                    @Auth
+                                        @if (@Auth::user()->suscripcion)
+                                            <div class="d-grid gap-2 col-6 mx-auto mb-3">
+
+                                                <audio controls id="music">
+                                                    <source src="{{ asset($song->url_cancion) }}" type="audio/mpeg">
+                                                </audio>
+                                        @endif
+
+                                        @if (@Auth::user()->hasRole(['admin', 'artist']))
+                                            <a class="btn btn-primary btn-lg btn-warning" role="button"
+                                                href=" {{ url('/songs/' . $song->id . '/edit') }}">Editar</a>
+                                        @endif
+                                        @if (@Auth::user()->hasRole('admin'))
+                                            <div class="d-flex justify-content-center">
+                                                <form action="{{ url('/songs/' . $song->id) }}" method="post">
+                                                    @csrf
+                                                    {{ method_field('DELETE') }}
+                                                    <input class="btn btn-primary btn-lg btn-danger " type="submit"
+                                                        onclick="return confirm('¿Seguro que deseas borrar?')" value="Borrar">
+                                                </form>
+                                            </div>
+                                        @endif
+                                    </div>
+                                @endauth
+                            </div>
+
+                        </div>
             </div>
+            @endif
+            @endauth
             @endforeach
+
         </div>
         </div>
         </div>
