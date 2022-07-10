@@ -16,6 +16,7 @@ use App\Models\Card_Type;
 use App\Models\Bank;
 use App\Models\SongPlaylist;
 use App\Models\Followup;
+use Spatie\Permission\Exceptions\RoleAlreadyExists;
 //se agrega la libreria spatie
 use Spatie\Permission\Models\Role;
 
@@ -31,9 +32,11 @@ class DatabaseSeeder extends Seeder
         {
                 // \App\Models\User::factory(10)->create();
                 // 1ro - Modelos sin llaves Foraneas (sin FK)
+                
                 Role::create(['name' => 'admin']);
                 Role::create(['name' => 'user']);
                 Role::create(['name' => 'artist']);
+                Role::create(['name' => 'super-admin']);
                 User::create([
                         'name' => 'admin',
                         'username' => 'admin',
@@ -43,7 +46,7 @@ class DatabaseSeeder extends Seeder
                         'fecha_creacion' => NULL,
                         'suscripcion' => true,
                         'num_tarjeta' => NULL,
-                ])->assignRole('admin');
+                ])->assignRole('super-admin');
                 Genre::factory(10)->create();
                 Location::factory(10)->create();
                 Card_Type::factory(10)->create();

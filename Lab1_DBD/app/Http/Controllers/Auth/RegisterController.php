@@ -74,7 +74,19 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'suscripcion' => false,
             'fecha_nacimiento' => $data['fecha_nacimiento'],
-        ])->assignRole('user');;
+        ])->assignRole('user');
+
+    }
+    protected function createArtist(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'username' => $data['username'],
+            'password' => Hash::make($data['password']),
+            'email' => $data['email'],
+            'suscripcion' => false,
+            'fecha_nacimiento' => $data['fecha_nacimiento'],
+        ])->assignRole('artist');
 
     }
 }

@@ -18,6 +18,7 @@ use App\Http\Controllers\MethodController;
 //use App\Http\Controllers\FunctionalityRoleController;
 use App\Http\Controllers\SongPlaylistController;
 use App\Http\Controllers\FollowupController;
+use Spatie\Permission\Contracts\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,10 +42,8 @@ Route::get('/escucha', function () {
     return view('escucha');
 });
 
-
-
-Route::get('/admin', function () {
-    return view('/admin/index');
+Route::get('/admin/usercreate', function () {
+    return view('/admin/usercreate');
 });
 
 
@@ -93,9 +92,10 @@ Route::put('/albums/update/{id}', [AlbumController::class, 'update']);
 Route::delete('/albums/delete/{id}', [AlbumController::class, 'destroy']);
 Route::get('/albums/restore/{id}', [AlbumController::class, 'restore']);
 //USERS
-Route::get('/users', [UserController::class, 'index']);
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/{id}', [UserController::class, 'show']);
-Route::post('/users/create', [UserController::class, 'store']);
+Route::post('/users/create', [UserController::class, 'store'])->name('users.strore');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::put('/users/update/{id}', [UserController::class, 'update']);
 Route::put('/users/update_role/{id}', [UserController::class, 'updateRol']);
 Route::delete('/users/delete/{id}', [UserController::class, 'destroy']);

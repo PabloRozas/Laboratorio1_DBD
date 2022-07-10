@@ -26,7 +26,7 @@ class UserController extends Controller
                 'respuesta' => 'No se encuentran Usuarios registrados.',
             ]);
         }
-        return view('/admin/index', compact('users'));
+        return view('admin.usuarios', compact('users'));
     }
 
 
@@ -71,8 +71,9 @@ class UserController extends Controller
             ]
         );
         if ($validator->fails()) {
-            return response($validator->errors());
+            return view('admin.validacion', compact('validator'));
         }
+        
         $user = new User;
         $user->name = $request->name;               //Se pide un usuario que no exista
         $user->username = $request->username;       //Username que no exista
@@ -80,8 +81,7 @@ class UserController extends Controller
         $user->password = $request->password;
         $user->fecha_nacimiento = $request->fecha_nacimiento;
         $user->suscripcion = false;
-        $user->num_tarjeta = null;
-        $user->id_rol = $request->id_rol;           //Se le da un rol al usuario dependiendo de sus permisos
+        $user->num_tarjeta = null;          //Se le da un rol al usuario dependiendo de sus permisos
         $user->fecha_creacion = now();
         $user->assignRole('user');
         $user->save();
@@ -106,13 +106,12 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  app\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $users=User::findOrFail($id);
-        return view('admin.edit', compact('users'));
+        dd($user);
     }
 
     /**
