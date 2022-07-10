@@ -40,7 +40,7 @@ Route::get(('/usuario'), function () {
 });
 Route::get('/', function () {
     return view('inicio');
-});
+})->name('inicio');
 
 Route::get('/escucha', function () {
     return view('escucha');
