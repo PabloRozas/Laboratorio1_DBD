@@ -39,6 +39,20 @@
                         @endif
                     @endif
                 </ul>
+                <div class="card-body">
+                    <form action="{{ route('songs.filter') }}" method="GET">
+                        <div class="row">
+                            <div class="col-xl-3">
+                                <label>Titulo</label>
+                                <input type="text" name="titulo" class="form-control" value="{{ $titulo ?? '' }}">
+                            </div>
+                            <div class="col-xl-12 text-right mt-2">
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
                 {{-- <div class="input-group w-25 ms-auto me-5 justify-content-end ">
                     <form action="{{ route('songs.filter') }}" method="GET">
                         <input type="text" name="genre" class="form-control" aria-label="Text input with dropdown button" value="{{$genre ?? ''}}">
@@ -73,14 +87,18 @@
                                 <p class="card-text">Album : {{ $song->album->nombre_album ?? '' }}</p>
                                 <p class="card-text">País : {{ $song->location->nombre_pais ?? '' }}</p>
                             </div>
+                            @Auth
                             <div class="d-grid gap-2 col-6 mx-auto mb-3">
 
                                 <audio controls id="music">
                                     <source src="{{ asset($song->url_cancion) }}" type="audio/mpeg">
                                 </audio>
+                                @if (@Auth::user()->hasRole(['admin', 'artist']))
                                 <a class="btn btn-primary btn-lg btn-warning" role="button"
-                                    href=" {{ url('/songs/' . $song->id . '/edit') }}">Editar</a>
+                                href=" {{ url('/songs/' . $song->id . '/edit') }}">Editar</a>
 
+                                @endif
+                                @if (@Auth::user()->hasRole('admin'))
                                 <div class="d-flex justify-content-center">
                                     <form action="{{ url('/songs/' . $song->id) }}" method="post">
                                         @csrf
@@ -89,7 +107,9 @@
                                             onclick="return confirm('¿Seguro que deseas borrar?')" value="Borrar">
                                     </form>
                                 </div>
+                                @endif
                             </div>
+                            @endauth
                         </div>
 
                         </div>

@@ -181,6 +181,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 //COMANDO PARA OBTENER TODAS LAS RUTAS.
+Route::get('songs_filter',[\App\Http\Controllers\SongController::class,'filter'])->name('songs.filter');
 Route::resource('songs', SongController::class);
 
 

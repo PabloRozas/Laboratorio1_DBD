@@ -31,6 +31,39 @@ class SongController extends Controller
         return view('songs.index',$songs);
     }
 
+    public function filter(Request $request)
+    {
+        $songs = Song::query();
+        $titulo = $request->titulo;
+        // $email = $request->email;
+        // $username = $request->username;
+        // $age = $request->age;
+
+        if ($titulo) {
+            $songs->where('titulo','LIKE','%'.$titulo.'%');
+        }
+        // if ($email) {
+        //     $users->where('email','LIKE','%'.$email.'%');
+        // }
+
+        // if ($username) {
+        //     $users->where('username','LIKE','%'.$username.'%');
+        // }
+
+        // if ($age) {
+        //     $users->where('age',$age);
+        // }
+
+        $data = [
+            'titulo' => $titulo,
+            // 'email' => $email,
+            // 'name' => $name,
+            // 'username' => $username,
+            'songs' => $songs->paginate(25),
+        ];
+
+        return view('songs.index',$data);
+    }
 
     /**
      * Show the form for creating a new resource.
