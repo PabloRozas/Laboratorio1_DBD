@@ -31,6 +31,10 @@ use Spatie\Permission\Contracts\Role;
 |
 */
 
+Route::get(('/songs/filter'), function(){
+    return view('songs.filter');
+});
+
 Route::get(('/usuario'), function () {
     return view('users/usuario');
 });
