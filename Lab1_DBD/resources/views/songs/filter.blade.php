@@ -24,10 +24,16 @@
                                 <input type="text" name="nombre_genero" class="form-control" value="{{ $nombre_genero ?? '' }}">
                             </div>
                             <div class="col-xl-12 text-right mt-2">
-                                <button class="btn btn-primary" type="submit">Search</button>
+                                <button class="btn btn-primary" type="submit">Buscar</button>
                             </div>
 
                         </div>
+                    </form>
+                </div>
+                <div >
+                    <form action="{{route('songs.ranking')}}" method="GET">
+                        <h2>Más Reproducidos</h2>
+                        <button class="btn btn-primary" type="submit">Buscar</button>
                     </form>
                 </div>
             </div>

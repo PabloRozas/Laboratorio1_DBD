@@ -63,6 +63,10 @@ class SongController extends Controller
 
         return view('songs.index',$data);
     }
+    public function masReproducidos(){
+        $songs = Song::orderBy('reproducciones', 'desc')->paginate(10);
+        return view('songs.index',['songs'=>$songs]);
+    }
 
     /**
      * Show the form for creating a new resource.
