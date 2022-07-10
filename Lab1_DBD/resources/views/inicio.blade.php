@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
 
-    <body class="d-flex h-100 text-center text-white bg-dark">
+    <body class="d-flex h-100 text-center text-white bg-dark bg-image">
         <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
             <header class="mb-auto">
                 <div>
@@ -51,7 +51,7 @@
             </header>
 
             <main class="px-3 justify-content-center">
-                <h1>Cover your page.</h1>
+                <h1>DEBEDE</h1>
                 <p class="lead">DEBEDE es tu nueva plataform para escuchar musica cuando quieras, donde quieras.</p>
                 <p class="lead">Especialmente construida para los alumnos de la USACH, por alumnos de la USACH.</p>
                 <p class="lead">

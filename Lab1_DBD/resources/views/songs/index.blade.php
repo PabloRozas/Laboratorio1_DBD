@@ -17,10 +17,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="{{url('/songs')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     @if (Auth::check())
                         <li class="nav-item dropdown">
@@ -39,37 +36,22 @@
                         @endif
                     @endif
                 </ul>
-                <div class="card-body">
+                <div>
                     <form action="{{ route('songs.filter') }}" method="GET">
-                        <div class="row">
-                            <div class="col-xl-3">
+                        <div class= "d-flex justify-content-end">
                                 <label>Titulo</label>
                                 <input type="text" name="titulo" class="form-control" value="{{ $titulo ?? '' }}">
-                            </div>
-                            <div class="col-xl-12 text-right mt-2">
-                                <button class="btn btn-primary" type="submit">Search</button>
-                            </div>
+                                <button class="btn btn-primary ms-2" type="submit">Buscar</button>
 
                         </div>
                     </form>
                 </div>
-                {{-- <div class="input-group w-25 ms-auto me-5 justify-content-end ">
-                    <form action="{{ route('songs.filter') }}" method="GET">
-                        <input type="text" name="genre" class="form-control" aria-label="Text input with dropdown button" value="{{$genre ?? ''}}">
 
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">Dropdown</button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Separated link</a></li>
-                        </ul>
-                    </form>
-                </div> --}}
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('songs/filter')}}">Busqueda Avanzada</a>
+                </li>
+                </ul>
             </div>
         </nav>
         <div class="container mt-3">

@@ -34,35 +34,38 @@ class SongController extends Controller
     public function filter(Request $request)
     {
         $songs = Song::query();
+        $genres = Genre::query();
         $titulo = $request->titulo;
-        // $email = $request->email;
+        $restriccion_edad = $request->restriccion_edad;
+        $nombre_genero = $request->nombre_genero;
         // $username = $request->username;
         // $age = $request->age;
 
         if ($titulo) {
             $songs->where('titulo','LIKE','%'.$titulo.'%');
         }
-        // if ($email) {
-        //     $users->where('email','LIKE','%'.$email.'%');
-        // }
+         if ($restriccion_edad) {
+             $songs->where('restriccion_edad','LIKE','%'.$restriccion_edad.'%');
+         }
 
-        // if ($username) {
-        //     $users->where('username','LIKE','%'.$username.'%');
-        // }
+         if ($nombre_genero) {
+            $id_genres = $genres->where('nombre_genero','LIKE','%'.$nombre_genero.'%')->pluck('id');
+            $songs->where('id_genero', $id_genres);
 
-        // if ($age) {
-        //     $users->where('age',$age);
-        // }
+         }
 
         $data = [
             'titulo' => $titulo,
-            // 'email' => $email,
-            // 'name' => $name,
-            // 'username' => $username,
+            'restriccion_edad' => $restriccion_edad,
+            'genero' => $nombre_genero,
             'songs' => $songs->paginate(25),
         ];
 
         return view('songs.index',$data);
+    }
+    public function masReproducidos(){
+        $songs = Song::orderBy('reproducciones', 'desc')->paginate(10);
+        return view('songs.index',['songs'=>$songs]);
     }
 
     /**

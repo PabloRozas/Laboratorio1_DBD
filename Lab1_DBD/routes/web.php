@@ -31,6 +31,10 @@ use Spatie\Permission\Contracts\Role;
 |
 */
 
+Route::get(('/songs/filter'), function(){
+    return view('songs.filter');
+});
+
 Route::get(('/usuario'), function () {
     return view('users/usuario');
 });
@@ -182,6 +186,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //COMANDO PARA OBTENER TODAS LAS RUTAS.
 Route::get('songs_filter',[\App\Http\Controllers\SongController::class,'filter'])->name('songs.filter');
+Route::get('masReproducidos',[\App\Http\Controllers\SongController::class,'masReproducidos'])->name('songs.ranking');
 Route::resource('songs', SongController::class);
 
 
