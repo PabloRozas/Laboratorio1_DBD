@@ -107,7 +107,7 @@
 {{-- Footer centrado --}}
 <footer class="footer text-center">
     <div class="container">
-        <span class="text-muted">DEBEDE 2020</span>
+        <span class="text-muted">DEBEDE 2022</span>
     </div>
 
 
