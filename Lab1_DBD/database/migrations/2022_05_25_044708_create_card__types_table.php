@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('card__types', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_tipo',30);
+            $table->string('nombre_tipo', 30);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

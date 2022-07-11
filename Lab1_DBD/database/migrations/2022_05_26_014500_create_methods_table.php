@@ -20,8 +20,10 @@ return new class extends Migration
             $table->string('nombre_titular');
             $table->integer('cod_banks');
             $table->integer('cod_tarjeta');
-            $table->foreign('cod_banks')->references('id')->on('banks');
-            $table->foreign('cod_tarjeta')->references('id')->on('card__types');
+            $table->softDeletes();
+            $table->foreign('cod_banks')->references('id')->on('banks')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('cod_tarjeta')->references('id')->on('card__types')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('num_tarjeta');
             $table->timestamps();
         });
     }

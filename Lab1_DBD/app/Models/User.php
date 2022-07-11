@@ -1,49 +1,52 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+use Spatie\Permission\Traits\HasRoles;
+use Carbon\Carbon;
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles;
 
-    public function autenticacion()
-    {
-        return $this->hasOne('App\Authentication');
-    }
-    public function subjectRoles()
-    {
-        return $this->belongsTo('App\Rol');
-    }
 
-    public function courseMetodos()
+    public function Method()
     {
-        return $this->hasMany('App\Method');
+        return $this->belongsTo('App\Method');
     }
-    public function courseRating()
+    public function Rating()
     {
-        return $this->hasMany('App\Course');
+        return $this->hasMany('App\Rating');
 
     }
-    public function coursePlaylist()
+    public function Playlist()
     {
         return $this->hasMany('App\Playlist');
 
     }
-    public function courseAlbum()
+    public function Album()
     {
         return $this->hasMany('App\Album');
 
     }
-    public function subjectSong()
+    //Funcion relación con la tabla followups
+    public function Followups()
     {
-        return $this->belongsTo('App\Song');
+        return $this->hasMany('App\Followup');
     }
+
+    public function getAge()
+    {
+   return Carbon::parse($this->attributes['fecha_nacimiento'])->age;
+    }
+
+
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -52,7 +55,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        //    'password',
+        'password',
+        'username',
+        'fecha_nacimiento',
+        'suscripcion',
     ];
 
     /**
@@ -73,4 +79,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+        /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 }

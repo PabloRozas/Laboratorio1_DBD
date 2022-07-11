@@ -4,20 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Rating extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
-    public function subjectScore()
-    {
-        return $this->belongsTo('App\Score');
-    }
-    public function subjectUser()
+    public function User()
     {
         return $this->belongsTo('App\User');
     }
-    public function subjectSong()
+    public function Song()
     {
         return $this->belongsTo('App\Song');
     }

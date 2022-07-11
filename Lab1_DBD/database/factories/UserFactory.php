@@ -4,11 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Role;
 use App\Models\Method;
-use App\Models\Song;
-use App\Models\Playlist;
-use App\Models\Album;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -24,14 +21,17 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'username' => $this->faker->userName(),
+            'password' => $this->faker->password(),
             'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'id_rol' => Role::all()->random()->id,
+            'fecha_nacimiento' => $this->faker->date(),
+            'edad' => $this->faker->numberBetween($min = 10, $max = 50),
+            'suscripcion' => $this->faker->boolean(),
             'num_tarjeta' => Method::all()->random()->id,
-            // 'remember_token' => Str::random(10),
-            // 'id_song' => Song::all()->random()->id,
-            // 'id_playlists' => Playlist::all()->random()->id,
-            // 'id_album' => Album::all()->random()->id,
+            'remember_token' => Str::random(10),
+            //'id_playlists' => Playlist::all()->random()->id,
+
+
         ];
     }
 

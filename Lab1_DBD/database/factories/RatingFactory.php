@@ -20,9 +20,9 @@ class RatingFactory extends Factory
     public function definition()
     {
         return [
-            'Comentario' => $this->faker->text(),
+            'comentario' => $this->faker->text(),
+            'num_puntaje' => $this->faker->numberBetween($min = 1, $max = 10),
             'id_cancion' => Song::all()->random()->id,
-            'id_score' => Score::all()->random()->id,
             'id_user' => User::all()->random()->id,
 
         ];

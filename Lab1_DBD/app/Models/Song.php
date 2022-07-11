@@ -2,37 +2,37 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Song extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    public function subjectGenero()
+    protected $dates = ['deleted_at'];
+    public function Genre()
     {
-        return $this->belongsTo('App\Genre');
+        return $this->hasOne(Genre::class, 'id', 'id_genero');
     }
-    public function subjectPais()
+    public function Location()
     {
-        return $this->belongsTo('App\Location');
-    }
-
-    public function subjectAlbum()
-    {
-        return $this->belongsTo('App\Album');
+        return $this->hasOne(Location::class, 'id', 'id_pais');
     }
 
-    public function subjectPlaylists(){
-        return $this->belongsToMany('App\Playlist');
+    public function Album()
+    {
+        return $this->hasOne(Album::class, 'id', 'id_album');
     }
-    public function courseRating()
+
+    //funcion de realcion con la tabla playlist_songs
+    public function playlist_songs()
+    {
+        return $this->hasMany('App\Models\Playlist_Songs');
+    }
+
+    public function Rating()
     {
         return $this->hasMany('App\Rating');
-    }
-    public function courseUser()
-    {
-        return $this->hasMany('App\User');
-
     }
 }

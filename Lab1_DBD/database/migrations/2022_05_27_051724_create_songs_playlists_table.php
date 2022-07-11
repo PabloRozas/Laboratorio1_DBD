@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('playlist_cancion', function (Blueprint $table) {
+        Schema::create('song_playlists', function (Blueprint $table) {
             $table->id();
             $table->integer('id_cancion');
             $table->integer('id_playlist');
-            $table->foreign('id_cancion')->references('id')->on('songs');
-            $table->foreign('id_playlist')->references('id')->on('playlists');
-
+            $table->foreign('id_cancion')->references('id')->on('songs')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_playlist')->references('id')->on('playlists')->onDelete('cascade')->onUpdate('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('playlist_cancion');
+        Schema::dropIfExists('song_playlists');
     }
 };
