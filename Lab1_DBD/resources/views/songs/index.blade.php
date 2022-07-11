@@ -45,13 +45,10 @@
 
                             <div class="dropdown-menu " aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ url('/usuario') }}"> Mi Perfil </a>
-                                @if (@Auth::user()->hasRole(['admin', 'artist']))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('songs/create') }}"> Registrar nueva canción </a>
-                        </li>
-                    @endif
+
                     @endif
                 </ul>
+
                 <div>
                     <form action="{{ route('songs.filter') }}" method="GET">
                         <div class="d-flex justify-content-end">
@@ -67,8 +64,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('songs/filter') }}">Busqueda Avanzada</a>
                     </li>
+                    @if (@Auth::user()->hasRole(['admin', 'artist']))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('songs/create') }}"> Registrar nueva canción </a>
+                    </li>
+                    @endif
                 </ul>
             </div>
+
         </nav>
         <div class="container mt-3">
             <div class="row row-cols-1 row-cols-md-3 g-4">
